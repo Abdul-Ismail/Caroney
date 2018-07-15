@@ -32,7 +32,7 @@ const data = [
             make: 'BMW',
             model: 'i5',
             petrol: 'diesel',
-            transmission: 'automatic'
+            transmission: 'auto'
         },
         label: 17
     },

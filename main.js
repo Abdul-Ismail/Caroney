@@ -120,8 +120,16 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
 
     //get highest information gain,
     //set it to first one by default
-    let highest = attibutesInformationGain[Object.keys(attibutesInformationGain)[0]].attribute.informationGain
-    let highestAttribute = Object.keys(attibutesInformationGain)[0]
+    let highest
+    let highestAttribute
+
+    if (! Object.keys(attibutesInformationGain)[0]) {
+        console.log("SOMETHING IE NULLLLL")
+        return null
+    }
+    highest = attibutesInformationGain[Object.keys(attibutesInformationGain)[0]].attribute.informationGain
+    highestAttribute = Object.keys(attibutesInformationGain)[0]
+
     for (const i in attibutesInformationGain){
         if (attibutesInformationGain[i].attribute.informationGain > highest){
             highest = attibutesInformationGain[i].attribute.informationGain
@@ -136,6 +144,7 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
 const generateDecisionTree = (data, dissmissAttributes, filter) => {
 
     let decisionTree = splitBestAttribute(data, dissmissAttributes, filter, 20)
+    if (!decisionTree) return
     const maxExtension = Object.keys(data[0].features).length
 
 
@@ -169,21 +178,19 @@ const predict = (input) => {
     let currentBranch = decisionTree20.subAttributeProbabilities[input[decisionTree20.attribute.name]]
 
     while (extendedAvailable){
-        if (currentBranch.extended){
-            currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
-        }else extendedAvailable = false
+        currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
+        if (!currentBranch.extended) extendedAvailable = false
     }
 
     return (currentBranch.positives > currentBranch.negatives)
-
 }
 
 
 // console.log(JSON.stringify(generateDecisionTree(data, [], {}), null, 2))
 
-console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
-// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
+// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
+console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
 
 
 
