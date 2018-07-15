@@ -178,8 +178,24 @@ const predict = (input) => {
     let currentBranch = decisionTree20.subAttributeProbabilities[input[decisionTree20.attribute.name]]
 
     while (extendedAvailable){
-        currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
+        /**
+         * Check that the attribute value that we have actually exists in our decision tree
+         * For example we could have a list of sub attributes make: { BMW:{P}, Merc: {P}}
+         * If someone stats that there make is audi and we dont have that we need to deal with it
+         * If that is the case we will return the probability of the given attribute (probably shouldnt do this)
+         */
+
+
+        // console.log(currentBranch.extended)
+
+        const availableSubAttributes = Object.keys(currentBranch.extended.subAttributeProbabilities)
+        if (availableSubAttributes.includes(input[currentBranch.extended.attribute.name])){
+            currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
+        }else return (currentBranch.positives > currentBranch.negatives)
+
+
         if (!currentBranch.extended) extendedAvailable = false
+
     }
 
     return (currentBranch.positives > currentBranch.negatives)
@@ -190,7 +206,7 @@ const predict = (input) => {
 
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
-console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
+console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'msanudal'}), null, 2))
 
 
 
