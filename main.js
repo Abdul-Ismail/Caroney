@@ -143,11 +143,10 @@ const generateDecisionTree = (data, dissmissAttributes, filter) => {
         const sub = decisionTree.subAttributeProbabilities[subAttribute]
         if (!sub.pure){
             filter[decisionTree.attribute.name] = subAttribute
-            console.log(filter)
-            console.log(dissmissAttributes)
+            // console.log(filter)
             const dissmissAttributesNew = dissmissAttributes.slice(0);;
             dissmissAttributesNew.push(decisionTree.attribute.name)
-            console.log(dissmissAttributesNew)
+            // console.log(dissmissAttributesNew)
 
             if (dissmissAttributesNew !== maxExtension)
                 sub.extended = generateDecisionTree(data, dissmissAttributesNew, filter, 20)
@@ -175,20 +174,17 @@ const predict = (input) => {
         }else extendedAvailable = false
     }
 
-
-
-
-    console.log(JSON.stringify(currentBranch, null, 2))
-
     return (currentBranch.positives > currentBranch.negatives)
 
 }
 
-// predict()
-
-
-
-console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
 
 // console.log(JSON.stringify(generateDecisionTree(data, [], {}), null, 2))
+
+console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
+// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
+// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
+
+
+
 
