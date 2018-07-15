@@ -115,9 +115,6 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
         }
     }
 
-    // console.log(JSON.stringify(attibutesInformationGain, null, 2))
-
-
     //get highest information gain,
     //set it to first one by default
     let highest
@@ -140,13 +137,17 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
     return attibutesInformationGain[highestAttribute]
 }
 
-
-const generateDecisionTree = (data, dissmissAttributes, filter) => {
-
-    let decisionTree = splitBestAttribute(data, dissmissAttributes, filter, 20)
+/**
+ * return a branch for decision tree for a given attribute
+ * @param data - the data we are teaching our classifier with
+ * @param dissmissAttributes - list of attributes that were already used so do not extend
+ * @param filter - e.g if currently extending an attribute such as make BMW and model i5
+ * @returns {*} - return sub attributes for extended attribute
+ */
+const generateDecisionTree = (data, dissmissAttributes, filter, splitValue) => {
+    let decisionTree = splitBestAttribute(data, dissmissAttributes, filter, splitValue)
     if (!decisionTree) return
     const maxExtension = Object.keys(data[0].features).length
-
 
     for (const subAttribute in decisionTree.subAttributeProbabilities){
         const sub = decisionTree.subAttributeProbabilities[subAttribute]
@@ -161,18 +162,13 @@ const generateDecisionTree = (data, dissmissAttributes, filter) => {
                 sub.extended = generateDecisionTree(data, dissmissAttributesNew, filter, 20)
         }
     }
-
     return decisionTree
-
 }
 
 
 const predict = (input) => {
     const decisionTree20 = generateDecisionTree(data, [], {}, 20)
-    // console.log(JSON.stringify(decisionTree20, null, 2))
-
     let extendedAvailable = true
-
 
     //The sub attribute that our input data falls into on the first level
     let currentBranch = decisionTree20.subAttributeProbabilities[input[decisionTree20.attribute.name]]
@@ -184,29 +180,22 @@ const predict = (input) => {
          * If someone stats that there make is audi and we dont have that we need to deal with it
          * If that is the case we will return the probability of the given attribute (probably shouldnt do this)
          */
-
-
-        // console.log(currentBranch.extended)
-
         const availableSubAttributes = Object.keys(currentBranch.extended.subAttributeProbabilities)
         if (availableSubAttributes.includes(input[currentBranch.extended.attribute.name])){
             currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
         }else return (currentBranch.positives > currentBranch.negatives)
 
-
         if (!currentBranch.extended) extendedAvailable = false
-
     }
-
     return (currentBranch.positives > currentBranch.negatives)
 }
 
 
-// console.log(JSON.stringify(generateDecisionTree(data, [], {}), null, 2))
+console.log(JSON.stringify(generateDecisionTree(data, [], {}, 20), null, 2))
 
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
-console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'msanudal'}), null, 2))
+// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'msanudal'}), null, 2))
 
 
 

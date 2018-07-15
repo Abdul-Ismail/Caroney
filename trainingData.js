@@ -22,6 +22,24 @@ const data = [
         features:{
             make: 'BMW',
             model: 'i5',
+            petrol: 'petrol',
+            transmission: 'manual'
+        },
+        label: 15
+    },
+    {
+        features:{
+            make: 'BMW',
+            model: 'i5',
+            petrol: 'petrol',
+            transmission: 'manual'
+        },
+        label: 15
+    },
+    {
+        features:{
+            make: 'BMW',
+            model: 'i5',
             petrol: 'diesel',
             transmission: 'manual'
         },
@@ -33,6 +51,24 @@ const data = [
             model: 'i5',
             petrol: 'diesel',
             transmission: 'auto'
+        },
+        label: 17
+    },
+    {
+        features:{
+            make: 'BMW',
+            model: 'i5',
+            petrol: 'diesel',
+            transmission: undefined
+        },
+        label: 17
+    },
+    {
+        features:{
+            make: 'BMW',
+            model: 'i5',
+            petrol: 'diesel',
+            transmission: undefined
         },
         label: 17
     },
