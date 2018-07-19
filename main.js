@@ -153,22 +153,30 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
  */
 const generateDecisionTree = (data, filter, splitValue) => {
     let decisionTree = splitBestAttribute(data, filter, splitValue)
-    if (!decisionTree) {
-        //pop filter
-        delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
-        return
-    }
+
+    if (!decisionTree) return
+
     const maxExtension = Object.keys(data[0].features).length
 
     for (const subAttribute in decisionTree.subAttributeProbabilities){
+        // console.log(subAttribute)
         const sub = decisionTree.subAttributeProbabilities[subAttribute]
-        if (!sub.pure){
-            filter[decisionTree.attribute.name] = subAttribute
+        filter[decisionTree.attribute.name] = subAttribute
 
+        if (!sub.pure){
             //TODO: maybe skipping last one or too much check blabla
-            if (Object.keys(filter).length - 1 !== maxExtension) sub.extended = generateDecisionTree(data, filter, splitValue)
-            else delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
+            if (Object.keys(filter).length -1   !== maxExtension) {
+                sub.extended = generateDecisionTree(data, filter, splitValue)
+            }
+            else {
+                console.log('quiting')
+                delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
+                return false
+            }
         }
+
+        delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
+
     }
     return decisionTree
 }
