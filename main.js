@@ -1,4 +1,5 @@
-const data = require('./trainingData')
+var fs = require('fs');
+var data = JSON.parse(fs.readFileSync('./file.json', 'utf8'));
 
 const getEntropy = (P, N) => {
     const PP = P/(P+N) //probability of positive
@@ -47,14 +48,16 @@ function filterItems(data, attributesFilterOption) {
     })
 }
 
-const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, splitValue) => {
+const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => {
     const attibutesInformationGain = {}
+
     const possibleAttributes = Object.keys(data[0].features)
 
     const filteredData = filterItems(data, attributesFilterOption)
+    const dissmissAtrributes = Object.keys(attributesFilterOption)
 
     //for each possible attribute calculate the information gain
-
+    //
     for (const attr of possibleAttributes){
         //if the current attribute has previously been extended then do not extend it again
         if (dissmissAtrributes.includes(attr)) continue
@@ -71,21 +74,23 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
          * For each attribute that we want to split we, we will separate the sub attributes
          * e.g if we are currently on attr model we want sub attributes to contain {BMW: [{features}], MERC: [{features}]}
          */
-        for (const d of filteredData){
-            attibutesInformationGain[attr] = {
-                subAttributeProbabilities: {}
+        if (filteredData.length > 0){
+            for (const d of filteredData){
+                attibutesInformationGain[attr] = {
+                    subAttributeProbabilities: {}
+                }
+
+                if (!subAttributes[d.features[attr]]){
+                    subAttributes[d.features[attr]] = []
+                    subAttributes[d.features[attr]].push(d)
+                }else subAttributes[d.features[attr]].push(d)
             }
-
-            if (!subAttributes[d.features[attr]]){
-                subAttributes[d.features[attr]] = []
-                subAttributes[d.features[attr]].push(d)
-            }else subAttributes[d.features[attr]].push(d)
-        }
-
+        } else continue //sub attributes will be empty so skip if it is
 
         //probability for sub attributes
         const subAttributesProbability = []
         for (const sub in subAttributes){
+
             //check if label is desired output for each value in the sub section
             let subPositives = 0;
             let subNegatives = 0;
@@ -109,6 +114,8 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
             }
         }
 
+
+
         attibutesInformationGain[attr].attribute = {
             name: attr,
             informationGain: getInformationGain(totalPositive, totalNegative, subAttributesProbability)
@@ -120,8 +127,8 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
     let highest
     let highestAttribute
 
-    if (! Object.keys(attibutesInformationGain)[0]) {
-        console.log("SOMETHING IE NULLLLL")
+    if (!Object.keys(attibutesInformationGain)[0]) {
+        if(print)console.log("SOMETHING IE NULLLLL")
         return null
     }
     highest = attibutesInformationGain[Object.keys(attibutesInformationGain)[0]].attribute.informationGain
@@ -144,26 +151,31 @@ const splitBestAttribute = (data, dissmissAtrributes, attributesFilterOption, sp
  * @param filter - e.g if currently extending an attribute such as make BMW and model i5
  * @returns {*} - return sub attributes for extended attribute
  */
-const generateDecisionTree = (data, dissmissAttributes, filter, splitValue) => {
-    let decisionTree = splitBestAttribute(data, dissmissAttributes, filter, splitValue)
-    if (!decisionTree) return
+const generateDecisionTree = (data, filter, splitValue) => {
+    let decisionTree = splitBestAttribute(data, filter, splitValue)
+    if (!decisionTree) {
+        //pop filter
+        delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
+        return
+    }
     const maxExtension = Object.keys(data[0].features).length
 
     for (const subAttribute in decisionTree.subAttributeProbabilities){
         const sub = decisionTree.subAttributeProbabilities[subAttribute]
         if (!sub.pure){
             filter[decisionTree.attribute.name] = subAttribute
-            // console.log(filter)
-            const dissmissAttributesNew = dissmissAttributes.slice(0);;
-            dissmissAttributesNew.push(decisionTree.attribute.name)
-            // console.log(dissmissAttributesNew)
 
-            if (dissmissAttributesNew !== maxExtension)
-                sub.extended = generateDecisionTree(data, dissmissAttributesNew, filter, 20)
+            //TODO: maybe skipping last one or too much check blabla
+            if (Object.keys(filter).length - 1 !== maxExtension) sub.extended = generateDecisionTree(data, filter, splitValue)
+            else delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
         }
     }
     return decisionTree
 }
+
+// generateDecisionTree(data, {}, 1399)
+console.log(JSON.stringify(generateDecisionTree(data,{}, 1399), null, 2))
+
 
 
 const predict = (input) => {
@@ -188,10 +200,9 @@ const predict = (input) => {
         if (!currentBranch.extended) extendedAvailable = false
     }
     return (currentBranch.positives > currentBranch.negatives)
-}
+};
 
-
-console.log(JSON.stringify(generateDecisionTree(data, [], {}, 20), null, 2))
+// generateDecisionTree(data, [], {}, 10000);
 
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
 // console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
