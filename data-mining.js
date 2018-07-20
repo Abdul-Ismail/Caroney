@@ -98,7 +98,7 @@ const scrapeCarDetails = async () => {
     const data = []
     const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER'
 
-    const totalPages = 400
+    const totalPages = 700
 
     for (let pageNumber = 1; pageNumber < totalPages + 1; pageNumber++){
         console.log(pageNumber)
@@ -133,7 +133,7 @@ const scrapeCarDetails = async () => {
 
     var fs = require('fs');
 
-    fs.writeFile('./file' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
+    fs.writeFile('./adverts' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }

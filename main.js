@@ -114,8 +114,6 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
             }
         }
 
-
-
         attibutesInformationGain[attr].attribute = {
             name: attr,
             informationGain: getInformationGain(totalPositive, totalNegative, subAttributesProbability)
@@ -153,7 +151,6 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
  */
 const generateDecisionTree = (data, filter, splitValue) => {
     let decisionTree = splitBestAttribute(data, filter, splitValue)
-
     if (!decisionTree) return
 
     const maxExtension = Object.keys(data[0].features).length
@@ -165,7 +162,7 @@ const generateDecisionTree = (data, filter, splitValue) => {
 
         if (!sub.pure){
             //TODO: maybe skipping last one or too much check blabla
-            if (Object.keys(filter).length -1   !== maxExtension) {
+            if (Object.keys(filter).length - 1   !== maxExtension) {
                 sub.extended = generateDecisionTree(data, filter, splitValue)
             }
             else {
@@ -178,20 +175,30 @@ const generateDecisionTree = (data, filter, splitValue) => {
         delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
 
     }
+    // console.log(JSON.stringify(decisionTree,{}, 2000), null, 1)
+
     return decisionTree
 }
 
 // generateDecisionTree(data, {}, 1399)
-console.log(JSON.stringify(generateDecisionTree(data,{}, 1399), null, 2))
+// console.log(JSON.stringify(generateDecisionTree(data,{}, 2000), null, 2))
 
 
-
-const predict = (input) => {
-    const decisionTree20 = generateDecisionTree(data, [], {}, 20)
+//will take decision tree and and check where the given data lies, e.g if decision tree is to check if car is over 20k. will return true if given car is over 20k
+const predict = (input, decisionTree) => {
     let extendedAvailable = true
 
     //The sub attribute that our input data falls into on the first level
-    let currentBranch = decisionTree20.subAttributeProbabilities[input[decisionTree20.attribute.name]]
+    let currentBranch = decisionTree.subAttributeProbabilities[input[decisionTree.attribute.name]]
+
+    if (!currentBranch){
+        //TODO:: work on this
+        console.log('The decisoon tree does not contain the field ' + decisionTree.attribute.name + ' the equald to ' + input[decisionTree.attribute.name])
+        //currentBranch = decisionTree.subAttributeProbabilities['--'] each field
+        return
+    }
+
+
 
     while (extendedAvailable){
         /**
@@ -200,6 +207,12 @@ const predict = (input) => {
          * If someone stats that there make is audi and we dont have that we need to deal with it
          * If that is the case we will return the probability of the given attribute (probably shouldnt do this)
          */
+
+        //if its pure then just return
+        if (currentBranch.pure){
+            return (currentBranch.positives >= currentBranch.negatives)
+        }
+
         const availableSubAttributes = Object.keys(currentBranch.extended.subAttributeProbabilities)
         if (availableSubAttributes.includes(input[currentBranch.extended.attribute.name])){
             currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
@@ -207,14 +220,238 @@ const predict = (input) => {
 
         if (!currentBranch.extended) extendedAvailable = false
     }
-    return (currentBranch.positives > currentBranch.negatives)
+    return (currentBranch.positives >= currentBranch.negatives)
 };
 
 // generateDecisionTree(data, [], {}, 10000);
 
-// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'manual'}), null, 2))
-// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'auto'}), null, 2))
-// console.log(JSON.stringify(predict({make: 'BMW', model: 'i5', petrol: 'diesel', transmission: 'msanudal'}), null, 2))
+
+
+const dummyPrediction = (input, value) => {
+    if (input > value){
+        return true
+    }else return false
+}
+
+const delay = (() => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve()
+        }, 1000)
+    })
+})
+const predictPrice = async (data) => {
+
+
+    let end = 100000;
+    let start = 0
+
+    while (end - start > 500){
+
+        //half the difference between start and end to get the middle point
+        const middlePoint = start + ((end - start) / 2)
+        const a = dummyPrediction(10, middlePoint)
+        console.log('middle point: ' + middlePoint)
+        console.log(a)
+
+
+        if  (a){
+            //set middle as start if input is higher
+            start = middlePoint
+        }else {
+            //set the end to the middle if point is lower
+            end = middlePoint
+        }
+
+        console.log('start: ' + start)
+        console.log('end: ' + end)
+        console.log('')
+        await delay()
+
+    }
+}
+
+// predictPrice()
+
+const a = async (input) => {
+    /**
+     * we will start from a certain value and check if the3 value is greater than the decision tree value it is being compared to
+     * Once we found one iteration with a postive valuye (out input data being greater then the lighthouse data) we will then pick the price range
+     * e.g
+     * 500 ... is our input data greater than this ? if so increment
+     * 1000 ... "" ""
+     * 1500 ... no it is not greater than this
+     * that means our value for the car is 1000 - 1500
+     */
+
+    const decisionTree = {
+        //0 - 100k
+        25000:  generateDecisionTree(data, {}, 25000),
+        50000:  generateDecisionTree(data, {}, 50000),
+        75000:  generateDecisionTree(data, {}, 75000),
+        100000:  generateDecisionTree(data, {}, 100000),
+
+        //0 - 25k
+        6250: generateDecisionTree(data, {}, 6250),
+        12500: generateDecisionTree(data, {}, 12500),
+        18750: generateDecisionTree(data, {}, 18750),
+        18750: generateDecisionTree(data, {}, 18750),
+        25000: generateDecisionTree(data, {}, 25000),
+
+
+
+        //0 - 6250
+            500: generateDecisionTree(data, {}, 500),
+            1000: generateDecisionTree(data, {}, 1000),
+            1500: generateDecisionTree(data, {}, 1500),
+            2000: generateDecisionTree(data, {}, 2000),
+            2500: generateDecisionTree(data, {}, 2500),
+            3000: generateDecisionTree(data, {}, 3000),
+            3500: generateDecisionTree(data, {}, 3500),
+            4000: generateDecisionTree(data, {}, 4000),
+            4500: generateDecisionTree(data, {}, 4500),
+            5000: generateDecisionTree(data, {}, 5000),
+            5500: generateDecisionTree(data, {}, 5500),
+            6000: generateDecisionTree(data, {}, 6000),
+            6500: generateDecisionTree(data, {}, 6500),
+
+        /*
+
+            //6250 - 12500
+            6250: generateDecisionTree(data, {}, 6250),
+            6750: generateDecisionTree(data, {}, 6750),
+            7250: generateDecisionTree(data, {}, 7250),
+            7500: generateDecisionTree(data, {}, 7500),
+            8000: generateDecisionTree(data, {}, 8000),
+            8500: generateDecisionTree(data, {}, 8500),
+            9000: generateDecisionTree(data, {}, 9000),
+            9500: generateDecisionTree(data, {}, 9500),
+            10000: generateDecisionTree(data, {}, 10000),
+            10500: generateDecisionTree(data, {}, 10500),
+            11000: generateDecisionTree(data, {}, 11000),
+            11500: generateDecisionTree(data, {}, 11500),
+            12000: generateDecisionTree(data, {}, 12000),
+            12500: generateDecisionTree(data, {}, 12500),
+
+
+            //12500 - 18750
+            12500: generateDecisionTree(data, {}, 12500),
+            13000: generateDecisionTree(data, {}, 13000),
+            13500: generateDecisionTree(data, {}, 13500),
+            14000: generateDecisionTree(data, {}, 14000),
+            14500: generateDecisionTree(data, {}, 14500),
+            15500: generateDecisionTree(data, {}, 15500),
+            16500: generateDecisionTree(data, {}, 16500),
+            17500: generateDecisionTree(data, {}, 17500),
+            18000: generateDecisionTree(data, {}, 18000),
+            18500: generateDecisionTree(data, {}, 18500),
+            19000: generateDecisionTree(data, {}, 19000),
+
+
+
+        //25k - 50k
+        31250: generateDecisionTree(data, {}, 31250),
+        37500: generateDecisionTree(data, {}, 37500),
+        43750: generateDecisionTree(data, {}, 43750),
+        50000: generateDecisionTree(data, {}, 50000),
+
+
+        //50k - 75k
+        56250: generateDecisionTree(data, {}, 56250),
+        62500: generateDecisionTree(data, {}, 62500),
+        68750: generateDecisionTree(data, {}, 68750),
+        75000: generateDecisionTree(data, {}, 75000),
+
+        //75k - 100k
+        81250: generateDecisionTree(data, {}, 81250),
+        87500: generateDecisionTree(data, {}, 87500),
+        93750: generateDecisionTree(data, {}, 93750),
+        100000: generateDecisionTree(data, {}, 100000),
+
+        */
+    }
+
+    //find wether it lays in 0-25 or 25-50 or 50-75 or 75-100 and then start from there
+
+
+
+    let valueOne = 0
+    let valueOneFound = false
+
+
+    while (valueOneFound === false){
+        valueOne += 25000
+
+        const greater = predict(input, decisionTree[valueOne])
+        // console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
+        if (!greater){
+            console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
+            valueOneFound = true
+        }
+    }
+
+    //split value one into 4 parts too
+    //so if we got 25 - 50 we should check where range it falls into 25000 - 31250 or 31250 - 37500 or 37500 - 43750 or 43750 - 50000
+
+
+    let valueTwo = valueOne - 25000
+    let valueTwoFound = false
+
+    while (valueTwoFound === false){
+        valueTwo += 6250
+        const greater = predict(input, decisionTree[valueTwo])
+        console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
+
+
+        if (!greater){
+            console.log('price is: ' + (valueTwo - 6250) + ' - ' + valueTwo)
+            valueTwoFound = true
+        }
+    }
+
+    let valueThree = valueTwo - 6250
+    let priceFound = false
+
+    console.log('')
+    console.log('')
+    console.log('')
+    console.log('')
+
+    while (priceFound === false){
+        valueThree += 500
+        // console.log('tree 3: ' + valueThree + '   ')
+
+        const greater = predict(input, decisionTree[valueThree])
+
+
+        if (!greater){
+            console.log('price is: ' + (valueThree - 500) + ' - ' + valueThree)
+            priceFound = true
+        }
+
+    }
+
+}
+
+// a({make: "3Series", model: "3Series", year: "2005", body: "Convertible"})
+a({
+    "make": "Audi",
+    "model": "A4",
+    "year": "2005",
+    "body": "Saloon"
+})
+
+
+
+// const b =  generateDecisionTree(data, {}, 5000)
+// console.log(JSON.stringify(b, null, 2))
+// console.log(JSON.stringify(predict({
+//     "make": "Skoda",
+//     "model": "Octavia",
+//     "year": "2009",
+//     "body": "Hatchback"
+// }, generateDecisionTree(data, {}, 6750)), null, 2))
+//
 
 
 
