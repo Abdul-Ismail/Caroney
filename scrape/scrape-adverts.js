@@ -158,7 +158,6 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
         console.log("The file was saved!");
     });
 
-
     console.log(data.length)
 })();
 
