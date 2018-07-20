@@ -59,7 +59,9 @@ const getPrice = (price) => {
 }
 
 
-console.log(getPrice('#342,233'))
+// console.log(getPrice('#342,233'))
+
+console.log(parseFloat('1.6L Diesel'))
 
 
 // console.log( Math.round(parseInt(str)/50000)*50000)

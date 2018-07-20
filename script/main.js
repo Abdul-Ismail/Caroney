@@ -1,5 +1,5 @@
 var fs = require('fs');
-var data = JSON.parse(fs.readFileSync('../data/file.json', 'utf8'));
+var data = JSON.parse(fs.readFileSync('../data/adverts.json', 'utf8'));
 var tree = require('./decisionTree.js')
 
 
@@ -163,10 +163,10 @@ const predictPrice = async (input) => {
 
 // a({make: "3Series", model: "3Series", year: "2005", body: "Convertible"})
 predictPrice({
-    "make": "Audi",
-    "model": "A4",
-    "year": "2005",
-    "body": "Saloon"
+    "make": "AlfaRomeo",
+    "model": "147",
+    "year": "2007",
+    "body": "Hatchback"
 })
 
 
