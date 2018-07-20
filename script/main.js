@@ -1,5 +1,5 @@
 var fs = require('fs');
-var data = JSON.parse(fs.readFileSync('../file.json', 'utf8'));
+var data = JSON.parse(fs.readFileSync('../data/file.json', 'utf8'));
 var tree = require('./decisionTree.js')
 
 
