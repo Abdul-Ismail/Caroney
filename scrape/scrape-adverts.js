@@ -57,12 +57,14 @@ const scrapeCarDetails = async () => {
         const YEAR_SELECTOR = ROW_SELECTOR.replace('INDEX', 3)
         const MILEAGE_SELECTOR = ROW_SELECTOR.replace('INDEX', 4)
         const TRANSMISSION_SELECTOR = ROW_SELECTOR.replace('INDEX', 5)
-        const ENGINE = ROW_SELECTOR.replace('INDEX', 6)
+        const ENGINE_AND_ENGINE = ROW_SELECTOR.replace('INDEX', 6)
         const BODY_TYPE_SELECTOR = ROW_SELECTOR.replace('INDEX', 7)
         const NCT_SELECTOR = ROW_SELECTOR.replace('INDEX', 8)
         const COLOR_SELECTOR = ROW_SELECTOR.replace('INDEX', 9)
         const DOORS_SELECTOR = ROW_SELECTOR.replace('INDEX', 10)
         const TAX_EXPIRY_SELECTOR = ROW_SELECTOR.replace('INDEX', 11)
+
+        const engineAndfuel = await getInnerText(ENGINE_AND_ENGINE)
 
 
         return {
@@ -72,7 +74,8 @@ const scrapeCarDetails = async () => {
                 age: (2018 - parseInt(await getInnerText(YEAR_SELECTOR))),
                 mileage: getMileage(await getInnerText(MILEAGE_SELECTOR)),
                 transmission: (await getInnerText(TRANSMISSION_SELECTOR)).replace(/\s/g, "").toLowerCase(),
-                ENGINE: parseFloat(await getInnerText(ENGINE)),//(await getInnerText(ENGINE)).replace(/\s/g, ""),
+                engine: parseFloat(engineAndfuel),
+                fuel: ((engineAndfuel).split(' ')[engineAndfuel.split(' ').length - 1]).replace(/\s/g, "").toLowerCase(),
                 body: (await getInnerText(BODY_TYPE_SELECTOR)).replace(/\s/g, "").toLowerCase(),
                 // NCT: await getInnerText(NCT_SELECTOR),
                 color: (await getInnerText(COLOR_SELECTOR)).toLowerCase(),
@@ -89,7 +92,7 @@ const scrapeCarDetails = async () => {
 }
 
 
-/*
+
 (async () => {
     const broswer = await puppeteer.launch({headless: true})
     page = await broswer.newPage()
@@ -105,10 +108,11 @@ const scrapeCarDetails = async () => {
             console.log(err)
         }
 })();
-*/
+
 
 const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER';
 
+/*
 
 (async () => {
     const broswer = await puppeteer.launch({headless: false})
@@ -160,6 +164,7 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
 
     console.log(data.length)
 })();
+*/
 
 
 

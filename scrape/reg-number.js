@@ -49,5 +49,5 @@ const getRegDetails = async (reg) => {
 }
 
 var str = "How are you doing today?";
-console.log(str.split(" ")[0])
+console.log(str.split(" ").length)
 getRegDetails('03ke1835')
