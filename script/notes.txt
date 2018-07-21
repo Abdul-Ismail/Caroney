@@ -1,0 +1,2 @@
+keys in data have to be a string as they will be used as key value in json data when generating tree and we will end up comparing string to number if a numer is
+converted to a string and is used later for comparasion

@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 const getEntropy = (P, N) => {
     const PP = P/(P+N) //probability of positive
     const PN = N/(P+N) //probability of negative
@@ -47,10 +49,18 @@ function filterItems(data, attributesFilterOption) {
 const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => {
     const attibutesInformationGain = {}
 
+    console.log(attributesFilterOption)
+
+
+
     const possibleAttributes = Object.keys(data[0].features)
 
     const filteredData = filterItems(data, attributesFilterOption)
     const dissmissAtrributes = Object.keys(attributesFilterOption)
+
+
+
+
 
     //for each possible attribute calculate the information gain
     for (const attr of possibleAttributes){
@@ -69,6 +79,8 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
          * For each attribute that we want to split we, we will separate the sub attributes
          * e.g if we are currently on attr model we want sub attributes to contain {BMW: [{features}], MERC: [{features}]}
          */
+
+
         if (filteredData.length > 0){
             for (const d of filteredData){
                 attibutesInformationGain[attr] = {
@@ -121,7 +133,7 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
     let highestAttribute
 
     if (!Object.keys(attibutesInformationGain)[0]) {
-        if(print)console.log("SOMETHING IE NULLLLL")
+        console.log("SOMETHING IE NULLLL NOOOOOOOOOOOOOOOOOOO")
         return null
     }
     highest = attibutesInformationGain[Object.keys(attibutesInformationGain)[0]].attribute.informationGain
@@ -132,6 +144,11 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
             highest = attibutesInformationGain[i].attribute.informationGain
             highestAttribute = i
         }
+    }
+
+    if (print) {
+        // console.log('dasdas');
+        // console.log(attibutesInformationGain[highestAttribute])
     }
 
     return attibutesInformationGain[highestAttribute]
@@ -145,13 +162,15 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
  * @returns {*} - return sub attributes for extended attribute
  */
 const generateDecisonTree = (data, filter, splitValue) => {
+    console.log(typeof data[0].features.age)
+
     let decisionTree = splitBestAttribute(data, filter, splitValue)
     if (!decisionTree) return
 
     const maxExtension = Object.keys(data[0].features).length
 
     for (const subAttribute in decisionTree.subAttributeProbabilities){
-        // console.log(subAttribute)
+        // console.log(decisionTree.subAttributeProbabilities[subAttribute])
         const sub = decisionTree.subAttributeProbabilities[subAttribute]
         filter[decisionTree.attribute.name] = subAttribute
 
@@ -160,7 +179,6 @@ const generateDecisonTree = (data, filter, splitValue) => {
                 sub.extended = splitBestAttribute(data, filter, splitValue)
             }
             else {
-                console.log('quiting')
                 delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
                 return false
             }
@@ -169,7 +187,12 @@ const generateDecisonTree = (data, filter, splitValue) => {
         delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
 
     }
-    // console.log(JSON.stringify(decisionTree,{}, 2000), null, 1)
+    // console.log(JSON.stringify(generatedTrees,{}, 2000), null, 1)
+
+    fs.writeFile('.././generatedTrees/tree_' + splitValue +'.json', JSON.stringify(decisionTree, null, "\t"), 'utf8', function (err) {
+        if (err) return console.log(err);
+        console.log("The file was saved!");
+    });
 
     return decisionTree
 }
@@ -181,10 +204,11 @@ const checkResultForInput = (input, decisionTree) => {
     //The sub attribute that our input data falls into on the first level
     let currentBranch = decisionTree.subAttributeProbabilities[input[decisionTree.attribute.name]]
 
+
     if (!currentBranch){
         //TODO:: work on this
         console.log('The decisoon tree does not contain the field ' + decisionTree.attribute.name + ' the equald to ' + input[decisionTree.attribute.name])
-        //currentBranch = decisionTree.subAttributeProbabilities['--'] each field
+        //currentBranch = generatedTrees.subAttributeProbabilities['--'] each field
         return
     }
 
@@ -197,14 +221,20 @@ const checkResultForInput = (input, decisionTree) => {
          */
 
         //if its pure then just return
-        if (currentBranch.pure) return (currentBranch.positives >= currentBranch.negatives)
+        //TODO:: should bot have extende null, should not have extended key at all if it is null
+        if (currentBranch.pure || !currentBranch.extended || currentBranch.extended === null) return (currentBranch.positives >= currentBranch.negatives)
 
         const availableSubAttributes = Object.keys(currentBranch.extended.subAttributeProbabilities)
         if (availableSubAttributes.includes(input[currentBranch.extended.attribute.name])){
             currentBranch = currentBranch.extended.subAttributeProbabilities[input[currentBranch.extended.attribute.name]]
         }else return (currentBranch.positives > currentBranch.negatives)
 
-        if (!currentBranch.extended) extendedAvailable = false
+
+        //TODO:: sgoul
+        if (!currentBranch.extended || currentBranch.extended === null){
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            extendedAvailable = false
+        }
     }
     return (currentBranch.positives >= currentBranch.negatives)
 };
