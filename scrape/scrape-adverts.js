@@ -160,9 +160,7 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
     var fs = require('fs');
 
     fs.writeFile('./testing' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
-        if (err) {
-            return console.log(err);
-        }
+        if (err) return console.log(err);
         console.log("The file was saved!");
     });
 
