@@ -33,13 +33,14 @@ const getRegDetails = async (reg) => {
         obj.color = (await getInnerText(page, '#motorcheck_price_table > div:nth-child(1) > div > div > div > table > tbody > tr > td.car_info > ul:nth-child(3) > li:nth-child(1)')).split(" ")[1]
         obj.fuel = (await getInnerText(page, '#motorcheck_price_table > div:nth-child(1) > div > div > div > table > tbody > tr > td.car_info > ul:nth-child(2) > li:nth-child(2)')).split(" ")[2]
         obj.transmission = ((await getInnerText(page, '#motorcheck_price_table > div:nth-child(1) > div > div > div > table > tbody > tr > td.car_info > ul:nth-child(3) > li:nth-child(2)')).split(" ")[1]).replace(/\s/g, "").toLowerCase()
-        obj.age = (2015 - parseInt((await getInnerText(page, '#motorcheck_price_table > div:nth-child(1) > div > div > div > table > tbody > tr > td.car_info > h1')).split(" ")[0])).toString()
+        obj.age = (2018 - parseInt((await getInnerText(page, '#motorcheck_price_table > div:nth-child(1) > div > div > div > table > tbody > tr > td.car_info > h1')).split(" ")[0])).toString()
 
 
         console.log(new Date().getTime() - start);
 
 
 
+        browser.close()
         resolve(obj)
     })
 };

@@ -1,0 +1,115 @@
+body{
+    background: linear-gradient(to right, rgb(60, 69 ,77), rgb(60, 69 ,70));
+    height: 100%
+}
+
+#wrapper{
+    margin: auto;
+    /*background-color: darkgrey;*/
+    background-color: rgb(67, 77, 86);
+    max-width: 700px;
+    padding: 10px 20px 20px 20px;
+}
+
+#regPlate > * {
+    display: inline-block;
+    vertical-align:top;
+
+}
+
+#regPlate {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: white;
+    border-radius: 5px;
+    border: solid black 2px
+}
+
+#regPlate input {
+    margin-top: 1px;
+    height: 35px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+}
+
+#regPlate img {
+    width: 20px;
+}
+
+#title {
+    color: white;
+    font-family: "Arial Rounded MT Bold";
+    text-align: center;
+    margin: 0 0 20px 0;
+    padding: 0;
+
+}
+
+#predictionType {
+    margin-bottom: 20px;
+}
+#predictionType > * {
+    display: inline-block;
+}
+
+#predictionType .or {
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    width: calc(18%);
+    text-align: center;
+    color: white;
+}
+
+#predictionType button {
+    width: 40%;
+    margin: 0;
+    text-align: left;
+    color: white
+}
+
+.clicked {
+    background-color: #0f82af;
+    border: none;
+}
+
+.unclicked {
+    background-color: rgba(1, 1, 1, 0);
+    border: solid white 1px;
+}
+
+#predictionType button:hover {
+    background-color: #0476a3;
+    cursor: pointer;
+}
+
+form {
+    margin-top: 40px;
+    text-align: center;
+}
+form input {
+    width: 80%;
+    margin: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: solid #0476a3 2px;
+    padding: 10px 0;
+    outline: none;
+    font-size: 12px;
+    color: white;
+}
+
+#submitButton {
+    background-color: #0f82af;
+    text-align: center;
+    width: 200px;
+    margin-top: 10px;
+    height: 30px;
+    margin-left: calc(50% - 100px);
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+
+}
+

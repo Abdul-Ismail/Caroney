@@ -230,9 +230,8 @@ const checkResultForInput = (input, decisionTree) => {
         }else return (currentBranch.positives > currentBranch.negatives)
 
 
-        //TODO:: sgoul
+        //TODO::
         if (!currentBranch.extended || currentBranch.extended === null){
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             extendedAvailable = false
         }
     }
