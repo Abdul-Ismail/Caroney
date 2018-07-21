@@ -30,7 +30,7 @@ const predictPrice = async (input) => {
         12500: tree.generate(data, {}, 12500),
         18750: tree.generate(data, {}, 18750),
         18750: tree.generate(data, {}, 18750),
-        25000: tree.generate(data, {}, 25000),
+        25000: tree.generate(data, {},  25000),
 
 
 
@@ -117,9 +117,15 @@ const predictPrice = async (input) => {
 
         const greater = tree.check(input, decisionTree[valueOne])
         // console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
+
         if (!greater){
-            console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
+            // console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
             valueOneFound = true
+
+        }
+
+        if (valueOne >=100000){
+            console.log('price of car is greater than 100k')
         }
     }
 
@@ -133,19 +139,16 @@ const predictPrice = async (input) => {
     while (valueTwoFound === false){
         valueTwo += 6250
         const greater = tree.check(input, decisionTree[valueTwo])
-        console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
-
+        // console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
 
         if (!greater){
-            console.log('price is: ' + (valueTwo - 6250) + ' - ' + valueTwo)
+            // console.log('price is: ' + (valueTwo - 6250) + ' - ' + valueTwo)
             valueTwoFound = true
         }
     }
 
     let valueThree = valueTwo - 6250
     let priceFound = false
-
-    console.log('')
 
     while (priceFound === false){
         valueThree += 500

@@ -24,7 +24,6 @@ const getInformationGain = (P, N, subAtrributes) => {
         //combine each entropy using the number of instances down each branch as the weight factor
         entropyAfter += (sub[0]+sub[1])/(P+N) * entropy
     }
-
     return entropyBefore - entropyAfter
 }
 
@@ -54,7 +53,6 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
     const dissmissAtrributes = Object.keys(attributesFilterOption)
 
     //for each possible attribute calculate the information gain
-    //
     for (const attr of possibleAttributes){
         //if the current attribute has previously been extended then do not extend it again
         if (dissmissAtrributes.includes(attr)) continue
@@ -158,7 +156,6 @@ const generateDecisonTree = (data, filter, splitValue) => {
         filter[decisionTree.attribute.name] = subAttribute
 
         if (!sub.pure){
-            //TODO: maybe skipping last one or too much check blabla
             if (Object.keys(filter).length - 1   !== maxExtension) {
                 sub.extended = splitBestAttribute(data, filter, splitValue)
             }
@@ -191,8 +188,6 @@ const checkResultForInput = (input, decisionTree) => {
         return
     }
 
-
-
     while (extendedAvailable){
         /**
          * Check that the attribute value that we have actually exists in our decision tree
@@ -202,9 +197,7 @@ const checkResultForInput = (input, decisionTree) => {
          */
 
         //if its pure then just return
-        if (currentBranch.pure){
-            return (currentBranch.positives >= currentBranch.negatives)
-        }
+        if (currentBranch.pure) return (currentBranch.positives >= currentBranch.negatives)
 
         const availableSubAttributes = Object.keys(currentBranch.extended.subAttributeProbabilities)
         if (availableSubAttributes.includes(input[currentBranch.extended.attribute.name])){
