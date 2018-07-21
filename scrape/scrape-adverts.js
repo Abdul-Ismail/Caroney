@@ -92,7 +92,7 @@ const scrapeCarDetails = async () => {
 }
 
 
-
+/*
 (async () => {
     const broswer = await puppeteer.launch({headless: true})
     page = await broswer.newPage()
@@ -108,11 +108,15 @@ const scrapeCarDetails = async () => {
             console.log(err)
         }
 })();
+*/
+
+// const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER';
+// const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/enginesize_*-*/page-PAGE_NUMBER';
+const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_withdrawn/enginesize_*-*/page-PAGE_NUMBER';
 
 
-const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER';
-
-/*
+//all https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/enginesize_*-*/page-PAGE_NUMBER 1300
+//widthran https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_withdrawn/enginesize_*-*/page-PAGE_NUMBER - 1100
 
 (async () => {
     const broswer = await puppeteer.launch({headless: false})
@@ -120,7 +124,7 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
     await page.setViewport({width: 1280, height: 800});
     const data = []
 
-    const totalPages = 1
+    const totalPages = 1100
 
     for (let pageNumber = 1; pageNumber < totalPages + 1; pageNumber++){
         console.log(pageNumber)
@@ -164,7 +168,7 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
 
     console.log(data.length)
 })();
-*/
+
 
 
 
