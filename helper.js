@@ -22,7 +22,7 @@ module.exports = {
         }, sel)
     },
 
-    getMileag: (str, convert) => {
+    getMileage: (str, convert) => {
 
         if (str === '' || str === '---') return '--'
         let mileage = parseInt(str.replace(',', ''))

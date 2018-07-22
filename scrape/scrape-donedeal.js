@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const helper = require('./helper')
+const helper = require('../helper')
 
 //https://www.adverts.ie/car/volvo/s40/stunning-volvo-s40-2008-f-s-h/15305983
 
@@ -60,7 +60,7 @@ const scrapeCarDetails = async () => {
                 make: checkl(obj.Make.replace(/\s/g, "").toLowerCase()),
                 model: checkl(obj.Model.replace(/\s/g, "").toLowerCase()),
                 age: checkl((2018 - parseInt(obj.Year)).toString()),
-                mileage: helper.getMileag(obj.Mileage, obj.Mileage.includes('mi')),
+                mileage: helper.getMileage(obj.Mileage, obj.Mileage.includes('mi')),
                 transmission: checkl(obj.Transmission.replace(/\s/g, "").toLowerCase()),
                 engine: checkl(((obj['Engine Size']).split(' ')[0]).replace(/\s/g, "").toLowerCase()),
                 fuel: checkl((obj['Fuel Type']).replace(/\s/g, "").toLowerCase()),

@@ -1,54 +1,15 @@
 const puppeteer = require('puppeteer')
+const helper = require('../helper')
 
-//https://www.adverts.ie/car/volvo/s40/stunning-volvo-s40-2008-f-s-h/15305983
-
-let page;
-
-const getInnerText = async (sel) => {
-    await page.waitFor(sel)
-    return await page.evaluate((sel) => {
-        return (document.querySelector(sel).innerText).trim()
-    }, sel)
-}
-
-const getMileage = (str) => {
-
-    if (str === '') return undefined
-    const mileage = parseInt(str.replace(',', ''))
-
-    if (mileage <= 10000) return 10000
-    else if (mileage <= 20000) return 20000
-    else if (mileage <= 30000) return 30000
-    else if (mileage <= 40000) return 40000
-    else if (mileage <= 50000) return 50000
-    else if (mileage <= 80000) return 80000
-    else if (mileage <= 100000) return 100000
-    else if (mileage <= 150000) return 150000
-    else if (mileage <= 200000) return 200000
-    else if (mileage <= 250000) return 250000
-    else if (mileage <= 300000) return 300000
-    else return 350000
-}
-
-const getPrice = (price) => {
-    price = price.replace(/\s/g, "").replace(',', '')
-    price = price.substring(1, price.length)
-    return parseInt(price)
-}
-
-const scrapeCarDetails = async () => {
-
+const scrapeCarDetails = async (page) => {
     await page.waitFor('#main')
     const i = await page.evaluate(() => {
-        if (document.querySelector('#container_wrapper > div.main-holder > div.grid-row > div.cols-8.padded.left-side > div:nth-child(6) > div > div > div:nth-child(3)')) {
-            return 6
-        } else{
-
-        } return 5
+        if (document.querySelector('#container_wrapper > div.main-holder > div.grid-row > div.cols-8.padded.left-side > div:nth-child(5) > div > div > div:nth-child(6)')) {
+            return 5
+        } else return 6
     })
 
     const ROW_SELECTOR = '#container_wrapper > div.main-holder > div.grid-row > div.cols-8.padded.left-side > div:nth-child('+ i +') > div > div > div:nth-child(INDEX)'
-
 
     try{
         const GRID_SELECTOR = '#container_wrapper > div.main-holder > div.grid-row > div.cols-8.padded.left-side > div:nth-child(('+ i +'))'
@@ -64,42 +25,33 @@ const scrapeCarDetails = async () => {
         const DOORS_SELECTOR = ROW_SELECTOR.replace('INDEX', 10)
         const TAX_EXPIRY_SELECTOR = ROW_SELECTOR.replace('INDEX', 11)
 
-        const engineAndfuel = await getInnerText(ENGINE_AND_ENGINE)
+        const engineAndfuel = await helper.getInnerText(page, ENGINE_AND_ENGINE)
 
-
+        const price = helper.getPrice(await helper.getInnerText(page, '#price'))
+        if (!price) return false
         return {
             features: {
-                make: (await getInnerText(MAKE_SELECTOR)).replace(/\s/g, "").toLowerCase(),
-                model: (await getInnerText(MODEL_SELECTOR)).replace(/\s/g, "").toLowerCase(),
-                age: (2018 - parseInt(await getInnerText(YEAR_SELECTOR))),
-                mileage: getMileage(await getInnerText(MILEAGE_SELECTOR)),
-                transmission: (await getInnerText(TRANSMISSION_SELECTOR)).replace(/\s/g, "").toLowerCase(),
-                engine: parseFloat(engineAndfuel),
+                make: (await helper.getInnerText(page, MAKE_SELECTOR)).replace(/\s/g, "").toLowerCase(),
+                model: (await helper.getInnerText(page, MODEL_SELECTOR)).replace(/\s/g, "").toLowerCase(),
+                age: ((2018 - parseInt(await helper.getInnerText(page, YEAR_SELECTOR))).toString()),
+                mileage: helper.getMileage(await helper.getInnerText(page, MILEAGE_SELECTOR)),
+                transmission: (await helper.getInnerText(page, TRANSMISSION_SELECTOR)).replace(/\s/g, "").toLowerCase(),
+                engine: (parseFloat(engineAndfuel)).toString(),
                 fuel: ((engineAndfuel).split(' ')[engineAndfuel.split(' ').length - 1]).replace(/\s/g, "").toLowerCase(),
-                body: (await getInnerText(BODY_TYPE_SELECTOR)).replace(/\s/g, "").toLowerCase(),
-                // NCT: await getInnerText(NCT_SELECTOR),
-                color: (await getInnerText(COLOR_SELECTOR)).toLowerCase(),
-                doors: await getInnerText(DOORS_SELECTOR),
-                // tax: await getInnerText(TAX_EXPIRY_SELECTOR)
+                body: (await helper.getInnerText(page, BODY_TYPE_SELECTOR)).replace(/\s/g, "").toLowerCase(),
+                color: (await helper.getInnerText(page, COLOR_SELECTOR)).toLowerCase(),
+                doors: await helper.getInnerText(page, DOORS_SELECTOR),
             },
-            label: getPrice(await getInnerText('#price'))
+            label: price
         }
-
-    }catch(err){
-        console.log(err)
-    }
-
+    }catch(err) { console.log(err) }
 }
-
-
 /*
 (async () => {
     const broswer = await puppeteer.launch({headless: true})
     page = await broswer.newPage()
     await page.setViewport({width: 1280, height: 800});
     await page.goto('https://www.adverts.ie/car/ford/transit-connect/2015-ford-transit-connect/15623019')
-
-
 
         try {
         console.log(await scrapeCarDetails())
@@ -110,22 +62,16 @@ const scrapeCarDetails = async () => {
 })();
 */
 
-// const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER';
-// const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/enginesize_*-*/page-PAGE_NUMBER';
-const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_withdrawn/enginesize_*-*/page-PAGE_NUMBER';
+const searchLinkActive = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/enginesize_*-*/page-PAGE_NUMBER';
+const searchLinkWithdrawn = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_withdrawn/enginesize_*-*/page-PAGE_NUMBER';
+const searchLinkSold = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_sold/enginesize_*-*/page-PAGE_NUMBER';
 
-
-//all https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/enginesize_*-*/page-PAGE_NUMBER 1300
-//widthran https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2/status_withdrawn/enginesize_*-*/page-PAGE_NUMBER - 1100
-
-(async () => {
+const scrape = async(searchLink, totalPages, file) => {
     const broswer = await puppeteer.launch({headless: false})
-    page = await broswer.newPage()
+    const page = await broswer.newPage()
     await page.setViewport({width: 1280, height: 800});
     const data = []
-
-    const totalPages = 1100
-
+    
     for (let pageNumber = 1; pageNumber < totalPages + 1; pageNumber++){
         console.log(pageNumber)
 
@@ -141,32 +87,31 @@ const searchLink = 'https://www.adverts.ie/for-sale/cars-motorbikes-boats/cars/2
                     if (i === 6 || i === 13) continue
                     links.push(table.children[i].childNodes[3].href)
                 }
-
                 return links
             })
-
-
+            
             for (const link of links){
                 await page.goto(link)
-                data.push(await scrapeCarDetails())
+                // page.goto(link)
+                const scrapedData = await scrapeCarDetails(page)
+                if (scrapedData) data.push(scrapedData)
             }
         }catch(err){
             console.log(err)
         }
-
     }
-
-
+    
     var fs = require('fs');
 
-    fs.writeFile('./testing' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
+    fs.writeFile('./'+ file +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
         if (err) return console.log(err);
         console.log("The file was saved!");
     });
-
     console.log(data.length)
-})();
+}
 
-
+scrape(searchLinkActive, 1, 'adverts-active')
+scrape(searchLinkWithdrawn, 1, 'adverts-withdrawn')
+scrape(searchLinkSold, 1, 'adverts-sold')
 
 

@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer')
-const helper = require('./helper')
+const helper = require('../helper')
 
 //https://www.adverts.ie/car/volvo/s40/stunning-volvo-s40-2008-f-s-h/15305983
 
@@ -20,9 +20,12 @@ const scrapeCarDetails = async () => {
             return obj
         })
 
+
         let mileage  =  obj.MILEAGE.slice(obj.MILEAGE.indexOf('('), obj.MILEAGE.length)
         if (helper.checkIfEmpty(mileage) !== '--'){
-            mileage = helper.getMileag(mileage)
+
+            mileage = helper.getMileage(mileage)
+
         }else mileage = '--'
 
         const price = helper.getPrice(obj.PRICE)

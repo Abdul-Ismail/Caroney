@@ -2,7 +2,8 @@ var fs = require('fs');
 // var data = JSON.parse(fs.readFileSync('../data/adverts.json', 'utf8'));
 var tree = require('./decisionTree.js')
 const regNumber = require('../scrape/reg-number')
-const path = require('path')
+const path = require('path');
+const helper = require('../helper')
 
 // console.log(typeof data[0].features.age)
 // tree.generate(data, {}, 1399)
@@ -11,6 +12,19 @@ const path = require('path')
 const folder = '3'
 
 const predictPrice = async (input) => {
+    input.model = (input.model).toString().replace(/\s/g, "").toLowerCase()
+    input.make = (input.make).toString().replace(/\s/g, "").toLowerCase()
+    input.engine = (input.engine).toString().replace(/\s/g, "").toLowerCase()
+    input.doors = (input.doors).toString().replace(/\s/g, "").toLowerCase()
+    input.body = (input.body).toString().replace(/\s/g, "").toLowerCase()
+    input.color = (input.color).toString().replace(/\s/g, "").toLowerCase()
+    input.age = (input.age).toString().replace(/\s/g, "").toLowerCase()
+    input.transmission = (input.transmission).toString().replace(/\s/g, "").toLowerCase()
+    input.fuel = (input.fuel).toString().replace(/\s/g, "").toLowerCase()
+    input.mileage = helper.getMileage(input.mileage)
+
+    console.log(input)
+
 
     /**
      * we will start from a certain value and check if the3 value is greater than the decision tree value it is being compared to
