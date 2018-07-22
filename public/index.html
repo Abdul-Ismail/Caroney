@@ -8,21 +8,22 @@
 </head>
 <body>
 
-<div id="wrapper">
+<div id="wrapper" style="position: relative">
 
     <h1 id="title">Caroney</h1>
+    <p style="color: white; font-family: Arial; text-align: center; margin: 5px 0 30px 0; padding: 0;"> Get the current or furutre value for your car</p>
 
     <div id="predictionType">
 
-        <button class="clicked">
+        <button id="currentPrice" onclick="toggle('currentPrice')" class="clicked">
             <h3>Check current price</h3>
             <p>Get the current value for you car</p>
         </button>
         <p class="or"> or </p>
 
-        <button class="unclicked">
-            <h3>Check current price</h3>
-            <p>Get the current value for you car</p>
+        <button id="futurePrice" id='Predict future price' onclick="toggle('futurePrice')" class="unclicked">
+            <h3>Predict future price</h3>
+            <p>Get the price of a future date</p>
         </button>
 
     </div>
@@ -46,13 +47,24 @@
         <select id="body"><option value="" disabled selected>Body Type</option></select>
         <select id="color"><option value="" disabled selected>Color</option></select>
         <select id="doors"><option value="" disabled selected>Doors</option></select>
-        <input type="text" id="mileage" name="doors" placeholder="doors">
+        <input type="text" id="mileage" name="mileage" placeholder="Mileage">
+        <select id="sellYear" style="display: none"><option value="" disabled selected>What year will you sell the car ?</option></select>
+
 
     </form>
 
     <button id="submitButton" onclick="predictPrice()"> Predict price</button>
 
     <p id="predictedPrice">...</p>
+
+    <p style="position: absolute; bottom: 0px; color: grey; font-size: 12px; font-family: Arial">
+        Developed by Abdulaziz Ismail <br>
+        Abduul.ismail@gmail.com
+    </p>
+</div>
+
+<div class="raceTrack" style="background: antiquewhite">
+<img id="car1" src="./img/car.png" style="background: red; width: 60px; margin-left: 0">
 </div>
 
 

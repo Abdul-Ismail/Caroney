@@ -91,13 +91,12 @@ const carMake = {
 const year = []
 const engine = []
 const bodyType = ['Cabriolet', 'Camper', 'Commercial', 'Convertible' ,'Coupe', 'Estate', 'Hatchback', 'MPV', 'Saloon', 'SUV', 'Other']
+const futureYears = []
 const colors = ['Beige', 'Black', 'Blue', 'Brown', 'Gold', 'Green', 'Grey', 'Navy', 'Orange', 'Pink', 'Purple', 'Red', 'Silver', 'Turquoise', 'White', 'Yellow', 'Other']
 
 const fillFormSelect = function(id, array){
     const select = document.getElementById(id)
     select.innerHTML = ''
-
-
 
     for (const make of array){
         const option = document.createElement('option')
@@ -107,12 +106,13 @@ const fillFormSelect = function(id, array){
     }
 }
 
+let predictFuturePrice = false
+
 
 const init = function(){
     for (let i = 2018; i > 1990; i--) year.push(i)
     for (let i = 0.6; i < 5.5; i+= 0.1) engine.push(i.toFixed(1))
-
-
+    for (let i = 2019; i < 2030; i++) futureYears.push(i)
     fillFormSelect('make', Object.keys(carMake))
     fillFormSelect('year', year)
     fillFormSelect('transmission', ['Automatic', 'Manual'])
@@ -121,24 +121,20 @@ const init = function(){
     fillFormSelect('body', bodyType)
     fillFormSelect('color', colors)
     fillFormSelect('doors', ['2', '3', '4', '5', '6', '7', '8'])
+    fillFormSelect('sellYear', futureYears)
+
 }
 
 init()
 
-
 const getRegistrationNumberInfo = function(){
     var xhr = new XMLHttpRequest();
-    console.log('in here ')
-
     const reg = document.getElementById('regNumber').value
-
     xhr.open("GET", "http://localhost:4000/regNumberDetails?reg=" + reg, false);
     xhr.send();
-    console.log('got it ')
 
     const obj = JSON.parse(xhr.response)
     console.log(obj)
-
     document.getElementById('model').value = obj.model
     document.getElementById('make').value = obj.make
     document.getElementById('year').value = (2018 - obj.age)
@@ -148,18 +144,9 @@ const getRegistrationNumberInfo = function(){
     document.getElementById('body').value = obj.body
     document.getElementById('color').value = obj.color
     document.getElementById('doors').value = obj.doors
-
 }
 
 const predictPrice = function(){
-    // console.log('prediction')
-    // var xhr = new XMLHttpRequest();
-    //
-    // xhr.open("POST", "http://localhost:4000/predictPrice", false);
-    // xhr.setRequestHeader("Content-Type", "application/json");
-    //
-    // xhr.send(JSON.stringify({ email: "hello@user.com", response: { name: "Tester" } }));
-
     var xhr = new XMLHttpRequest();
     var url = "http://localhost:4000/predictPrice";
     xhr.open("POST", url, true);
@@ -168,7 +155,7 @@ const predictPrice = function(){
     var data = JSON.stringify({
         model: document.getElementById('model').value,
         make: document.getElementById('make').value,
-        age: (2018 - document.getElementById('year').value),
+        age: (!predictFuturePrice) ? (2018 - document.getElementById('year').value) : (document.getElementById('sellYear').value - document.getElementById('year').value),
         transmission: document.getElementById('transmission').value,
         engine: document.getElementById('engine').value,
         fuel: document.getElementById('fuel').value,
@@ -186,12 +173,48 @@ const predictPrice = function(){
             document.getElementById('predictedPrice').innerText = json.price
         }
     }
-
-
-    // const obj = JSON.parse(xhr.response)
-    // console.log(obj)
 }
 
-const test = () => {
-    fillFormSelect('model', carMake[document.getElementById('make').value])
+const test = function() {fillFormSelect('model', carMake[document.getElementById('make').value])}
+
+const toggle = function(id){
+    document.getElementById('currentPrice').className = 'unclicked'
+    document.getElementById('futurePrice').className = 'unclicked'
+    document.getElementById(id).className = 'clicked'
+
+    if (id === 'futurePrice'){
+        document.getElementById('sellYear').style.display = 'inline-block'
+        document.getElementById('mileage').placeholder = 'Estimated mileage when selling'
+        document.getElementById('mileage').value = ''
+        predictFuturePrice = true
+
+
+    }else {
+        document.getElementById('sellYear').style.display = 'none'
+        document.getElementById('mileage').placeholder = 'Current mileage'
+        document.getElementById('mileage').value = ''
+        predictFuturePrice = false
+
+    }
 }
+const delay = (() => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve()
+        }, 5)
+    })
+})
+
+
+
+
+
+const moveCar = async function(){
+    for(let i = 0; i < 1000; i++){
+        await delay()
+        document.getElementById('car1').style.marginLeft = (parseInt(document.getElementById('car1').style.marginLeft) + 1) + 'px';
+
+    }
+}
+
+moveCar()

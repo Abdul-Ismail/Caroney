@@ -1,2 +1,50 @@
 keys in data have to be a string as they will be used as key value in json data when generating tree and we will end up comparing string to number if a numer is
 converted to a string and is used later for comparasion
+
+ways to improve prediction:
+- if the probability is lets say greater than 80 percent that don't then don't extend the tree onto another branch and just end there.
+The example below (3/500) is extended from 2009 -> micra.. prediction will predict a given micra with 1.5 as below 500 but that is not the case, was probably bad data that was read in.
+					"micra": {
+						"probability": 0.9411764705882353,
+						"positives": 32,
+						"negatives": 2,
+						"pure": false,
+						"extended": {
+							"subAttributeProbabilities": {
+								"1.3": {
+									"probability": 1,
+									"positives": 3,
+									"negatives": 0,
+									"pure": true
+								},
+								"1.2": {
+									"probability": 1,
+									"positives": 28,
+									"negatives": 0,
+									"pure": true
+								},
+								"1.4": {
+									"probability": 1,
+									"positives": 1,
+									"negatives": 0,
+									"pure": true
+								},
+								"1.6": {
+									"probability": 0,
+									"positives": 0,
+									"negatives": 1,
+									"pure": true
+								},
+								"1.5": {
+									"probability": 0,
+									"positives": 0,
+									"negatives": 1,
+									"pure": true
+								}
+							},
+							"attribute": {
+								"name": "engine",
+								"informationGain": 0.3227569588973982
+							}
+						}
+					},
