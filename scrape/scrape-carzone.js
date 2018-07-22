@@ -21,7 +21,6 @@ const scrapeCarDetails = async () => {
         })
 
 
-        //TODO:: REMOVE THIS
         let mileage  =  obj.MILEAGE.slice(obj.MILEAGE.indexOf('('), obj.MILEAGE.length)
         if (helper.checkIfEmpty(mileage) !== '--'){
             mileage = helper.getMileage(mileage)
