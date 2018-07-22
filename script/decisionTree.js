@@ -49,17 +49,13 @@ function filterItems(data, attributesFilterOption) {
 const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => {
     const attibutesInformationGain = {}
 
-    console.log(attributesFilterOption)
+    // if (attributesFilterOption.year = '2016') console.log(attributesFilterOption)
 
-
+    // console.log(attributesFilterOption)
 
     const possibleAttributes = Object.keys(data[0].features)
-
     const filteredData = filterItems(data, attributesFilterOption)
     const dissmissAtrributes = Object.keys(attributesFilterOption)
-
-
-
 
 
     //for each possible attribute calculate the information gain
@@ -92,7 +88,10 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
                     subAttributes[d.features[attr]].push(d)
                 }else subAttributes[d.features[attr]].push(d)
             }
-        } else continue //sub attributes will be empty so skip if it is
+        } else {
+            console.log('in heree')
+            continue
+        } //sub attributes will be empty so skip if it is
 
         //probability for sub attributes
         const subAttributesProbability = []
@@ -133,7 +132,7 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
     let highestAttribute
 
     if (!Object.keys(attibutesInformationGain)[0]) {
-        console.log("SOMETHING IE NULLLL NOOOOOOOOOOOOOOOOOOO")
+        // console.log("SOMETHING IE NULLLL NOOOOOOOOOOOOOOOOOOO")
         return null
     }
     highest = attibutesInformationGain[Object.keys(attibutesInformationGain)[0]].attribute.informationGain
@@ -151,6 +150,9 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
         // console.log(attibutesInformationGain[highestAttribute])
     }
 
+    // if (attributesFilterOption.year = '2016') console.log(attibutesInformationGain[highestAttribute])
+
+
     return attibutesInformationGain[highestAttribute]
 }
 
@@ -162,8 +164,6 @@ const splitBestAttribute = (data, attributesFilterOption, splitValue, print) => 
  * @returns {*} - return sub attributes for extended attribute
  */
 const generateDecisonTree = (data, filter, splitValue) => {
-    console.log(typeof data[0].features.age)
-
     let decisionTree = splitBestAttribute(data, filter, splitValue)
     if (!decisionTree) return
 
@@ -175,8 +175,8 @@ const generateDecisonTree = (data, filter, splitValue) => {
         filter[decisionTree.attribute.name] = subAttribute
 
         if (!sub.pure){
-            if (Object.keys(filter).length - 1   !== maxExtension) {
-                sub.extended = splitBestAttribute(data, filter, splitValue)
+            if (Object.keys(filter).length - 1  !== maxExtension) {
+                sub.extended = generateDecisonTree(data, filter, splitValue)
             }
             else {
                 delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
@@ -187,14 +187,21 @@ const generateDecisonTree = (data, filter, splitValue) => {
         delete filter[Object.keys(filter)[Object.keys(filter).length - 1]]
 
     }
-    // console.log(JSON.stringify(generatedTrees,{}, 2000), null, 1)
-
-    fs.writeFile('.././generatedTrees/tree_' + splitValue +'.json', JSON.stringify(decisionTree, null, "\t"), 'utf8', function (err) {
-        if (err) return console.log(err);
-        console.log("The file was saved!");
-    });
 
     return decisionTree
+}
+
+const generateAndSave = async (data, filter, splitValue) => {
+
+    const decisionTree = await generateDecisonTree(data, filter, splitValue)
+
+    fs.writeFile('.././generatedTrees/3/tree_' + splitValue +'.json', JSON.stringify(decisionTree, null, "\t"), 'utf8', function (err) {
+        if (err) {
+            console.log(err)
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    });
 }
 
 //will take decision tree and and check where the given data lies, e.g if decision tree is to check if car is over 20k. will return true if given car is over 20k
@@ -240,3 +247,4 @@ const checkResultForInput = (input, decisionTree) => {
 
 module.exports.generate = generateDecisonTree
 module.exports.check = checkResultForInput
+module.exports.generateAndSave = generateAndSave

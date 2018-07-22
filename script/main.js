@@ -1,5 +1,5 @@
 var fs = require('fs');
-// var data = JSON.parse(fs.readFileSync('../data/adverts-sold-formatted.json', 'utf8'));
+// var data = JSON.parse(fs.readFileSync('../data/adverts.json', 'utf8'));
 var tree = require('./decisionTree.js')
 const regNumber = require('../scrape/reg-number')
 const path = require('path')
@@ -7,6 +7,8 @@ const path = require('path')
 // console.log(typeof data[0].features.age)
 // tree.generate(data, {}, 1399)
 // console.log(JSON.stringify(tree.generate(data,{}, 2000), null, 2))
+
+const folder = '3'
 
 const predictPrice = async (input) => {
 
@@ -27,7 +29,7 @@ const predictPrice = async (input) => {
 
         while (valueOneFound === false){
             valueOne += 25000
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', 'tree_' + valueOne + '.json')))
+            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueOne + '.json')))
             const greater = tree.check(input, data)
             console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
 
@@ -50,7 +52,7 @@ const predictPrice = async (input) => {
             valueTwo += 6250
 
             console.log(valueTwo)
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', 'tree_' + valueTwo + '.json')))
+            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueTwo + '.json')))
             const greater = tree.check(input, data)
             // console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
 
@@ -67,7 +69,7 @@ const predictPrice = async (input) => {
         while (priceFound === false){
             valueThree += 500
             // console.log('tree 3: ' + valueThree + '   ')
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', 'tree_' + valueThree + '.json')))
+            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueThree + '.json')))
             const greater = tree.check(input, data)
 
             console.log(valueThree, greater)
@@ -85,28 +87,27 @@ const predictPrice = async (input) => {
 }
 
 // a({make: "3Series", model: "3Series", year: "2005", body: "Convertible"})
-// predictPrice({
-//     "make": "golf",
-//     "model": "golf",
-//     "age": "14",
-//     "mileage": "350000",
-//     "transmission": "manual",
-//     "engine": "1.9",
-//     "fuel": "diesel",
-//     "body": "hatchback",
-//     "color": "black",
-//     "doors": "5"
+// predictPrice({ make: 'volkswagen',
+//     model: 'golf',
+//     engine: '1.4',
+//     doors: '5',
+//     body: 'Hatchback',
+//     color: 'Gold',
+//     fuel: 'Petrol',
+//     transmission: 'manual',
+//     mileage: '3000000',
+//     age: '15'
 // })
 
 module.exports = predictPrice
 
-
+//
 // (async () => {
 //     const data = await regNumber('03ke1835')
 //     console.log(data)
 //     predictPrice(data)
 // })()
-
-
-
-
+//
+//
+//
+//

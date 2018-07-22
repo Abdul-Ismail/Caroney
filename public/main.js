@@ -22,6 +22,7 @@ const getRegistrationNumberInfo = function(){
     document.getElementById('body').value = obj.body
     document.getElementById('color').value = obj.color
     document.getElementById('doors').value = obj.doors
+
 }
 
 const predictPrice = function(){
@@ -47,8 +48,10 @@ const predictPrice = function(){
         fuel: document.getElementById('fuel').value,
         body: document.getElementById('body').value,
         color: document.getElementById('color').value,
-        doors: document.getElementById('doors').value
-    });
+        doors: document.getElementById('doors').value,
+        mileage: document.getElementById('mileage').value
+
+});
     xhr.send(data);
 
 
