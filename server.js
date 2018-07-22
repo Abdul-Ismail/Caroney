@@ -21,7 +21,6 @@ app.get('/regNumberDetails', async (req, res) => {
  })
 
 app.post('/predictPrice', async (req, res) => {
-    console.log(req.body)
     res.send({price: await predictPrice(req.body)})
 })
 
