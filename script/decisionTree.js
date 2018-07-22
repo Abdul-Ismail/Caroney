@@ -208,6 +208,7 @@ const generateAndSave = async (data, filter, splitValue) => {
 const checkResultForInput = (input, decisionTree) => {
     let extendedAvailable = true
 
+    //TODO::if key is not available then use -- branch
     //The sub attribute that our input data falls into on the first level
     let currentBranch = decisionTree.subAttributeProbabilities[input[decisionTree.attribute.name]]
 
