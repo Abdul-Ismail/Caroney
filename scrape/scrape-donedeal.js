@@ -52,7 +52,6 @@ const scrapeCarDetails = async () => {
 
 
         const p = await helper.getInnerText(page, PRICE_SELECTOR)
-        console.log(p)
         const price = helper.getPrice(p)
         if (!price) return false
 
@@ -106,12 +105,14 @@ const searchLink = 'https://www.donedeal.ie/cars?start=PAGE_NUMBER';
     await page.setViewport({width: 1280, height: 800});
     const data = []
 
-    const totalPages = 1
+    const totalPages = 2500
 
     for (let pageNumber = 1; pageNumber < totalPages + 1; pageNumber++){
 
+        console.log(pageNumber)
+
         try {
-            page.goto(searchLink.replace('PAGE_NUMBER', pageNumber))
+            page.goto(searchLink.replace('PAGE_NUMBER', (pageNumber * 28)))
             await page.waitFor('#searchResultsPanel > ul > li:nth-child(1) > a')
 
 
@@ -128,7 +129,6 @@ const searchLink = 'https://www.donedeal.ie/cars?start=PAGE_NUMBER';
             })
 
             for (const link of links){
-                console.log(link)
                 page.goto(link)
                 const scrapedData = await scrapeCarDetails()
                 if (scrapedData) data.push(scrapedData)

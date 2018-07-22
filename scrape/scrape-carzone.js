@@ -23,7 +23,7 @@ const scrapeCarDetails = async () => {
         let mileage  =  obj.MILEAGE.slice(obj.MILEAGE.indexOf('('), obj.MILEAGE.length)
         if (helper.checkIfEmpty(mileage) !== '--'){
             mileage = helper.getMileag(mileage)
-        }else kms = '--'
+        }else mileage = '--'
 
         const price = helper.getPrice(obj.PRICE)
         if (!price) return false
@@ -78,9 +78,12 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
     await page.setViewport({width: 1280, height: 800});
     const data = []
 
-    const totalPages = 3
+    const totalPages = 1500
 
     for (let pageNumber = 1; pageNumber < totalPages + 1; pageNumber++){
+
+        console.log(pageNumber)
+
 
         try {
             page.goto(searchLink.replace('PAGE_NUMBER', pageNumber))
@@ -89,8 +92,6 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
 
             const links = await page.evaluate(() => {
                 const links = []
-
-                console.log('in here')
 
                 for (let i = 3; i < 35; i++){
                     if (i === 6 || i === 10) continue
@@ -106,7 +107,7 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
                 if (scrapedData) data.push(scrapedData)
             }
         }catch(err){
-            console.log(err)
+            // console.log(err)
         }
 
     }
@@ -122,7 +123,7 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
     console.log(data.length)
 })().catch(err => {
     console.log('error caught')
-    console.log(err)
+    // console.log(err)
 })
 
 
