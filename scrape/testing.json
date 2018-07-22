@@ -1,0 +1,1217 @@
+[
+	{
+		"features": {
+			"make": "abarth",
+			"model": "500",
+			"age": "2",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "pasboblered",
+			"doors": "3"
+		},
+		"label": 14950
+	},
+	{
+		"features": {
+			"make": "abarth",
+			"model": "500",
+			"age": "3",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "black",
+			"doors": "3"
+		},
+		"label": 14950
+	},
+	{
+		"features": {
+			"make": "abarth",
+			"model": "500",
+			"age": "6",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "3"
+		},
+		"label": 9600
+	},
+	{
+		"features": {
+			"make": "abarth",
+			"model": "500",
+			"age": "9",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "white",
+			"doors": "3"
+		},
+		"label": 5500
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "147",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "5"
+		},
+		"label": 4999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "147",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "5"
+		},
+		"label": 3750
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "147",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "5"
+		},
+		"label": 2800
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "147",
+			"age": "13",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "bluemetallic",
+			"doors": "5"
+		},
+		"label": 1700
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "147",
+			"age": "14",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "black",
+			"doors": "3"
+		},
+		"label": 1700
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "156",
+			"age": "13",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "blue",
+			"doors": "4"
+		},
+		"label": 1000
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "156",
+			"age": "15",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.8",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "grey",
+			"doors": "4"
+		},
+		"label": 1250
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "6",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "black",
+			"doors": "4"
+		},
+		"label": 11450
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "silver",
+			"doors": "4"
+		},
+		"label": 10495
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "black",
+			"doors": "4"
+		},
+		"label": 9945
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "estate",
+			"color": "silver",
+			"doors": "5"
+		},
+		"label": 8995
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "silvermetallic",
+			"doors": "4"
+		},
+		"label": 2950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "10",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.8",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "blue",
+			"doors": "4"
+		},
+		"label": 5495
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "10",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.8",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "red",
+			"doors": "4"
+		},
+		"label": 3950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "10",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "blackmetallic",
+			"doors": "4"
+		},
+		"label": 3750
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.4",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "grey",
+			"doors": "4"
+		},
+		"label": 4250
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.8",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "blue",
+			"doors": "4"
+		},
+		"label": 2995
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.8",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "grey",
+			"doors": "4"
+		},
+		"label": 2900
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "12",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.4",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "blue",
+			"doors": "4"
+		},
+		"label": 5500
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "159",
+			"age": "12",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "silver",
+			"doors": "4"
+		},
+		"label": 2795
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "166",
+			"age": "17",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "bluemetallic",
+			"doors": "4"
+		},
+		"label": 550
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "4c",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "1.7",
+			"fuel": "petrol",
+			"body": "coupe",
+			"color": "yellow",
+			"doors": "2"
+		},
+		"label": 89999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "brera",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.4",
+			"fuel": "diesel",
+			"body": "coupe",
+			"color": "grey",
+			"doors": "2"
+		},
+		"label": 7999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "brera",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.2",
+			"fuel": "petrol",
+			"body": "coupe",
+			"color": "black",
+			"doors": "2"
+		},
+		"label": 5000
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "brera",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.4",
+			"fuel": "diesel",
+			"body": "coupe",
+			"color": "blackmetallic",
+			"doors": "2"
+		},
+		"label": 4000
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.9",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "red",
+			"doors": "4"
+		},
+		"label": 107499
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "misanoblue",
+			"doors": "4"
+		},
+		"label": 59999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "mizano",
+			"doors": "4"
+		},
+		"label": 56999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "white",
+			"doors": "4"
+		},
+		"label": 45499
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "metallicblue",
+			"doors": "4"
+		},
+		"label": 44250
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "black",
+			"doors": "4"
+		},
+		"label": 43749
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "alfared",
+			"doors": "4"
+		},
+		"label": 42999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "black",
+			"doors": "4"
+		},
+		"label": 46945
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "petrol",
+			"body": "saloon",
+			"color": "alfared",
+			"doors": "4"
+		},
+		"label": 44845
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulia",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.1",
+			"fuel": "diesel",
+			"body": "saloon",
+			"color": "alfared",
+			"doors": "4"
+		},
+		"label": 33999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "metallicmisanoblue",
+			"doors": "5"
+		},
+		"label": 27699
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "white",
+			"doors": "5"
+		},
+		"label": 27650
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "alfared",
+			"doors": "5"
+		},
+		"label": 27199
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "alfawhite",
+			"doors": "5"
+		},
+		"label": 28950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "1",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "mpv",
+			"color": "white",
+			"doors": "4"
+		},
+		"label": 20950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "2",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "white",
+			"doors": "5"
+		},
+		"label": 17950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "2",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "silver",
+			"doors": "5"
+		},
+		"label": 12999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "3",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "grey",
+			"doors": "5"
+		},
+		"label": 16999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "3",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "white",
+			"doors": "4"
+		},
+		"label": 15950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "3",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "5"
+		},
+		"label": 15495
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "4",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "blue",
+			"doors": "5"
+		},
+		"label": 17000
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "4",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "silver",
+			"doors": "5"
+		},
+		"label": 13999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "5",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "black",
+			"doors": "5"
+		},
+		"label": 12950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "5",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "metallicgrey",
+			"doors": "5"
+		},
+		"label": 12950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "6",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "5"
+		},
+		"label": 11995
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "6",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "gray",
+			"doors": "5"
+		},
+		"label": 8450
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "grey",
+			"doors": "5"
+		},
+		"label": 10500
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "blue",
+			"doors": "5"
+		},
+		"label": 9999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "--",
+			"doors": "2"
+		},
+		"label": 8950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "4"
+		},
+		"label": 8950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "blue",
+			"doors": "--"
+		},
+		"label": 8950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "7",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.6",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "metallicgrey",
+			"doors": "5"
+		},
+		"label": 6950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "giulietta",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.0",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "blackmetallic",
+			"doors": "5"
+		},
+		"label": 8999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "gt",
+			"age": "9",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "blue",
+			"doors": "3"
+		},
+		"label": 5000
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "gt",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.9",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "black",
+			"doors": "3"
+		},
+		"label": 3950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "gt",
+			"age": "12",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "2.2",
+			"fuel": "petrol",
+			"body": "coupe",
+			"color": "red",
+			"doors": "3"
+		},
+		"label": 3950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "mito",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.3",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "alfared",
+			"doors": "3"
+		},
+		"label": 19749
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "mito",
+			"age": "5",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "0.9",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "3"
+		},
+		"label": 8950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "mito",
+			"age": "5",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "0.9",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "red",
+			"doors": "3"
+		},
+		"label": 7950
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "mito",
+			"age": "5",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.2",
+			"fuel": "diesel",
+			"body": "hatchback",
+			"color": "black",
+			"doors": "3"
+		},
+		"label": 6500
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "mito",
+			"age": "8",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.4",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "white",
+			"doors": "3"
+		},
+		"label": 6500
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "metallicstromboligrey",
+			"doors": "5"
+		},
+		"label": 59599
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.1",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "metallicmisanoblue",
+			"doors": "5"
+		},
+		"label": 59566
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "metallicblack",
+			"doors": "5"
+		},
+		"label": 57999
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "white",
+			"doors": "5"
+		},
+		"label": 57499
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "navy",
+			"doors": "5"
+		},
+		"label": 59995
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.2",
+			"fuel": "diesel",
+			"body": "suv",
+			"color": "grey",
+			"doors": "5"
+		},
+		"label": 59995
+	},
+	{
+		"features": {
+			"make": "alfaromeo",
+			"model": "stelvio",
+			"age": "0",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "2.1",
+			"fuel": "diesel",
+			"body": "mpv",
+			"color": "grey",
+			"doors": "5"
+		},
+		"label": 54950
+	},
+	{
+		"features": {
+			"make": "astonmartin",
+			"model": "cygnet",
+			"age": "6",
+			"mileage": "350000",
+			"transmission": "manual",
+			"engine": "1.3",
+			"fuel": "petrol",
+			"body": "hatchback",
+			"color": "metallicblack",
+			"doors": "2"
+		},
+		"label": 29950
+	},
+	{
+		"features": {
+			"make": "astonmartin",
+			"model": "db9",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "5.9",
+			"fuel": "petrol",
+			"body": "cabriolet",
+			"color": "silver",
+			"doors": "2"
+		},
+		"label": 44995
+	},
+	{
+		"features": {
+			"make": "astonmartin",
+			"model": "db9",
+			"age": "13",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "5.9",
+			"fuel": "petrol",
+			"body": "coupe",
+			"color": "blue",
+			"doors": "2"
+		},
+		"label": 40000
+	},
+	{
+		"features": {
+			"make": "astonmartin",
+			"model": "v8",
+			"age": "11",
+			"mileage": "350000",
+			"transmission": "automatic",
+			"engine": "5.3",
+			"fuel": "petrol",
+			"body": "coupe",
+			"color": "silver",
+			"doors": "2"
+		},
+		"label": 47950
+	}
+]

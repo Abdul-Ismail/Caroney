@@ -5,6 +5,7 @@ const checkIfEmpty = (str) => {
     }else return str
 }
 
+
 const delay = (time => {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -21,10 +22,14 @@ module.exports = {
         }, sel)
     },
 
-    getMileag: (str) => {
+    getMileag: (str, convert) => {
 
-        if (str === '') return undefined
-        const mileage = parseInt(str.replace(',', ''))
+        if (str === '' || str === '---') return '--'
+        let mileage = parseInt(str.replace(',', ''))
+
+        if (convert) mileage = mileage * 1.6
+
+        if (mileage <1) return '--'
 
         if (mileage <= 10000) return '10000'
         else if (mileage <= 20000) return '20000'
