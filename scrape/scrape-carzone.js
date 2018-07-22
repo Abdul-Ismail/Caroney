@@ -5,7 +5,7 @@ const helper = require('../helper')
 
 let page;
 
-const scrapeCarDetails = async () => {
+const scrapeCarDetails = async (link) => {
     try{
         await page.waitForSelector('#fpa-details > div.row-fluid > div.facts-wrap.span9 > dl > dd:nth-child(14)')
         const obj = await page.evaluate(() => {
@@ -21,12 +21,7 @@ const scrapeCarDetails = async () => {
         })
 
 
-        let mileage  =  obj.MILEAGE.slice(obj.MILEAGE.indexOf('('), obj.MILEAGE.length)
-        if (helper.checkIfEmpty(mileage) !== '--'){
-
-            mileage = helper.getMileage(mileage)
-
-        }else mileage = '--'
+        let mileage  =  obj.MILEAGE.slice(obj.MILEAGE.indexOf('(') + 1, obj.MILEAGE.length)
 
         const price = helper.getPrice(obj.PRICE)
         if (!price) return false
@@ -36,18 +31,20 @@ const scrapeCarDetails = async () => {
                 make: helper.checkIfEmpty(obj.MAKE.replace(/\s/g, "").toLowerCase()),
                 model: helper.checkIfEmpty(obj.MODEL.replace(/\s/g, "").toLowerCase()),
                 age: helper.checkIfEmpty((2018 - parseInt(obj.YEAR)).toString()),
-                mileage: mileage,
+                mileage: helper.getMileage(mileage),
                 transmission: helper.checkIfEmpty(obj.TRANSMISSION.replace(/\s/g, "").toLowerCase()),
                 engine: helper.checkIfEmpty(((obj.ENGINE).split(' ')[0]).replace(/\s/g, "").toLowerCase()),
                 fuel: helper.checkIfEmpty(((obj.ENGINE).split(' ')[1]).replace(/\s/g, "").toLowerCase()),
                 body: helper.checkIfEmpty(obj['BODY TYPE'].replace(/\s/g, "").toLowerCase()),
                 color: helper.checkIfEmpty(obj.COLOUR.replace(/\s/g, "").toLowerCase()),
                 doors: helper.checkIfEmpty(obj.DOORS.replace(/\s/g, "").toLowerCase()),
+                link: link
             },
             label: price
         }
 
     }catch(err){
+        console.log(err)
         console.log('caught error while scrapping')
         return false
     }
@@ -74,7 +71,7 @@ const scrapeCarDetails = async () => {
 
 
 const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/30';
-
+// const searchLink = 'https://www.carzone.ie/search/result/cars/make/volkswagen/model/golf/page/PAGE_NUMBER/limit/30';
 (async () => {
     const broswer = await puppeteer.launch({headless: false})
     page = await broswer.newPage()
@@ -97,20 +94,25 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
                 const links = []
 
                 for (let i = 3; i < 35; i++){
+
+                    // if (i === 7 || i === 11) continue
+                    // links.push(document.querySelector('#search-results-list > li:nth-child('+ i +') > div > div.vehicle-image > a').href)
+
                     if (i === 6 || i === 10) continue
                     links.push(document.querySelector('#search-results-list > li:nth-child('+ i +') > div > div.vehicle-description > div.vehicle-make-model > h3 > a').href)
                 }
 
                 return links
+
             })
 
             for (const link of links){
                 page.goto(link)
-                const scrapedData = await scrapeCarDetails()
+                const scrapedData = await scrapeCarDetails(link)
                 if (scrapedData) data.push(scrapedData)
             }
         }catch(err){
-            // console.log(err)
+            console.log(err)
         }
 
     }
@@ -118,7 +120,7 @@ const searchLink = 'http://carzone.ie/search/result/cars/page/PAGE_NUMBER/limit/
 
     var fs = require('fs');
 
-    fs.writeFile('./testing' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
+    fs.writeFile('./carzone-data' +'.json', JSON.stringify(data, null, "\t"), 'utf8', function (err) {
         if (err) return console.log(err);
         console.log("The file was saved!");
     });
