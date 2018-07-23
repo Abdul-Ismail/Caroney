@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <title>Caroney</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="icon" href="./img/icon.png">
 
 </head>
 <body>
 
 <div id="wrapper" style="position: relative">
-
     <h1 id="title">Caroney</h1>
     <p style="color: white; font-family: Arial; text-align: center; margin: 5px 0 30px 0; padding: 0;"> Get the current or furutre value for your car</p>
 
     <div id="predictionType">
-
         <button id="currentPrice" onclick="toggle('currentPrice')" class="clicked">
             <h3>Check current price</h3>
             <p>Get the current value for you car</p>
@@ -25,33 +24,33 @@
             <h3>Predict future price</h3>
             <p>Get the price of a future date</p>
         </button>
-
     </div>
 
-
-    <div id="regPlate">
-        <img src="./reg.png">
-        <input id="regNumber" type="text" name="reg" placeholder="Registration number">
+    <div style="text-align: center">
+        <div id="regPlate">
+            <img src="./reg.png">
+            <input id="regNumber" type="text" name="reg" placeholder="Registration number">
+        </div> <button onclick="getRegistrationNumberInfo()" style="vertical-align: center;"> Submit</button>
     </div>
-
-    <button onclick="getRegistrationNumberInfo()"> Get car detail</button>
-
 
     <form>
-        <select id="make" onchange="test()"><option value="" disabled selected>Example Placeholder</option></select>
-        <select id="model"><option value="" disabled selected>Select your model</option></select>
-        <select id="year"><option value="" disabled selected>Year</option></select>
-        <select id="transmission"><option value="" disabled selected>Transmission</option></select>
-        <select id="engine"><option value="" disabled selected>Engine size</option></select>
-        <select id="fuel"><option value="" disabled selected>Fuel Type</option></select>
-        <select id="body"><option value="" disabled selected>Body Type</option></select>
-        <select id="color"><option value="" disabled selected>Color</option></select>
-        <select id="doors"><option value="" disabled selected>Doors</option></select>
-        <input type="text" id="mileage" name="mileage" placeholder="Mileage">
-        <select id="sellYear" style="display: none"><option value="" disabled selected>What year will you sell the car ?</option></select>
-
-
+        <select id="make" onchange="updateModels()"></select>
+        <select onchange="checkSelectors()" id="model"><option value="" disabled selected>Model</option></select>
+        <select onchange="checkSelectors()" id="year"></select>
+        <select onchange="checkSelectors()" id="transmission"></select>
+        <select onchange="checkSelectors()" id="engine"></select>
+        <select onchange="checkSelectors()" id="fuel"></select>
+        <select onchange="checkSelectors()" id="body"></select>
+        <select onchange="checkSelectors()" id="color"></select>
+        <select onchange="checkSelectors()" id="doors">></select>
+        <input onkeydown="checkSelectors()" type="text" id="mileage" placeholder="Mileage">
+        <select onchange="checkSelectors()" id="sellYear" style="display: none"><option value="" disabled selected>What year will you sell the car ?</option></select>
     </form>
+    <div id="traffifLight">
+        <div class="light" id="red" style="background-color:red; position: absolute; left: 39%; top: 6.5%"> </div>
+        <div class="light" id="orange" style="background-color:grey; position: absolute; left: 39%; top: 21.5%"> </div>
+        <div class="light" id="green" style="background-color:grey; position: absolute; left: 39%; top: 36.5%"> </div>
+    </div>
 
     <button id="submitButton" onclick="predictPrice()"> Predict price</button>
 
@@ -62,11 +61,6 @@
         Abduul.ismail@gmail.com
     </p>
 </div>
-
-<div class="raceTrack" style="background: antiquewhite">
-<img id="car1" src="./img/car.png" style="background: red; width: 60px; margin-left: 0">
-</div>
-
 
 <script src="main.js"></script>
 </body>

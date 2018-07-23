@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-var data = JSON.parse(fs.readFileSync('/Users/abdulazizismail/Desktop/Caroney/data/adverts-open.json', 'utf8'));
+// var data = JSON.parse(fs.readFileSync('/Users/abdulazizismail/Desktop/Caroney/data/adverts-open.json', 'utf8'));
 
 const a = []
 
@@ -45,7 +45,9 @@ const combineObj = () => {
     const objs = [
         JSON.parse(fs.readFileSync('../data/adverts-withdrawn-formatted.json', 'utf8')),
         JSON.parse(fs.readFileSync('../data/adverts-sold-formatted.json', 'utf8')),
-        JSON.parse(fs.readFileSync('../data/adverts-open-formatted.json', 'utf8'))
+        JSON.parse(fs.readFileSync('../data/adverts-open-formatted.json', 'utf8')),
+        JSON.parse(fs.readFileSync('../data/carzone.json', 'utf8'))
+
 
     ]
 
@@ -60,7 +62,7 @@ const combineObj = () => {
 
     console.log(newData.length)
 
-    fs.writeFile('./data3' +'.json', JSON.stringify(newData, null, "\t"), 'utf8', function (err) {
+    fs.writeFile('./data4' +'.json', JSON.stringify(newData, null, "\t"), 'utf8', function (err) {
         if (err) return console.log(err);
         console.log("The file was saved!");
     });
@@ -69,7 +71,7 @@ const combineObj = () => {
 
 }
 
-// combineObj()
+combineObj()
 
 
 // let num = 15
