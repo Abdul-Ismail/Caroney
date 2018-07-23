@@ -46,7 +46,7 @@ const combineObj = () => {
         JSON.parse(fs.readFileSync('../data/adverts-withdrawn-formatted.json', 'utf8')),
         JSON.parse(fs.readFileSync('../data/adverts-sold-formatted.json', 'utf8')),
         JSON.parse(fs.readFileSync('../data/adverts-open-formatted.json', 'utf8')),
-        JSON.parse(fs.readFileSync('../data/carzone.json', 'utf8'))
+        JSON.parse(fs.readFileSync('../data/donedeal.json', 'utf8'))
 
 
     ]

@@ -9,7 +9,7 @@ const helper = require('../helper')
 // tree.generate(data, {}, 1399)
 // console.log(JSON.stringify(tree.generate(data,{}, 2000), null, 2))
 
-const folder = '3'
+const folder = '4'
 
 const predictPrice = async (input) => {
     input.model = (input.model).toString().replace(/\s/g, "").toLowerCase()
