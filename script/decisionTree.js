@@ -195,7 +195,7 @@ const generateAndSave = async (data, filter, splitValue) => {
 
     const decisionTree = await generateDecisonTree(data, filter, splitValue)
 
-    fs.writeFile('.././generatedTrees/4/tree_' + splitValue +'.json', JSON.stringify(decisionTree, null, "\t"), 'utf8', function (err) {
+    fs.writeFile('.././generatedTrees/5/tree_' + splitValue +'.json', JSON.stringify(decisionTree, null, "\t"), 'utf8', function (err) {
         if (err) {
             console.log(err)
             return console.log(err);

@@ -23,7 +23,7 @@ const predictPrice = async (input) => {
     input.fuel = (input.fuel).toString().replace(/\s/g, "").toLowerCase()
     input.mileage = helper.getMileage(input.mileage)
 
-    console.log(input)
+    // console.log(input)
 
 
     /**
@@ -45,15 +45,16 @@ const predictPrice = async (input) => {
             valueOne += 25000
             const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueOne + '.json')))
             const greater = tree.check(input, data)
-            console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
+            // console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
 
             if (!greater){
-                console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
+                // console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
                 valueOneFound = true
             }
 
             if (valueOne >=100000){
-                console.log('price of car is greater than 100k')
+                resolve({start: 100000 - 500, end: 9999999999999})
+                // console.log('price of car is greater than 100k')
             }
         }
 
@@ -65,7 +66,7 @@ const predictPrice = async (input) => {
         while (valueTwoFound === false){
             valueTwo += 6250
 
-            console.log(valueTwo)
+            // console.log(valueTwo)
             const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueTwo + '.json')))
             const greater = tree.check(input, data)
             // console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
@@ -86,12 +87,13 @@ const predictPrice = async (input) => {
             const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueThree + '.json')))
             const greater = tree.check(input, data)
 
-            console.log(valueThree, greater)
+            // console.log(valueThree, greater)
 
             if (!greater){
-                console.log(valueThree)
-                console.log('price is: ' + (valueThree - 500) + ' - ' + valueThree)
-                resolve('price is: ' + (valueThree - 500) + ' - ' + valueThree)
+                // console.log(valueThree)
+                // console.log('price is: ' + (valueThree - 500) + ' - ' + valueThree)
+                // resolve('price is: ' + (valueThree - 500) + ' - ' + valueThree)
+                resolve({start: valueThree - 500, end: valueThree})
                 priceFound = true
             }
         }

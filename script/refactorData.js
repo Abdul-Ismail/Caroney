@@ -47,18 +47,24 @@ const combineObj = () => {
         JSON.parse(fs.readFileSync('../data/adverts-sold-formatted.json', 'utf8')),
         JSON.parse(fs.readFileSync('../data/adverts-open-formatted.json', 'utf8')),
         JSON.parse(fs.readFileSync('../data/donedeal.json', 'utf8'))
-
-
     ]
 
+    let i = 0
+
     const newData = []
+    const testData = []
+
 
     for (const obj of objs){
         for (const o of obj){
-            newData.push(o)
+            i++
+
+            if (i % 20 === 0){
+                i = 0
+                testData.push(o)
+            }else newData.push(o)
         }
     }
-
 
     console.log(newData.length)
 
@@ -68,7 +74,10 @@ const combineObj = () => {
     });
 
 
-
+    fs.writeFile('./testData' +'.json', JSON.stringify(testData, null, "\t"), 'utf8', function (err) {
+        if (err) return console.log(err);
+        console.log("The file was saved!");
+    });
 }
 
 combineObj()
