@@ -9,13 +9,15 @@ const helper = require('../helper')
 // tree.generate(data, {}, 1399)
 // console.log(JSON.stringify(tree.generate(data,{}, 2000), null, 2))
 
-const folder = '4'
+const folder = '4-nodoors'
+console.log('folder:', folder);
 
 const predictPrice = async (input) => {
+
     input.model = (input.model).toString().replace(/\s/g, "").toLowerCase()
     input.make = (input.make).toString().replace(/\s/g, "").toLowerCase()
     input.engine = (input.engine).toString().replace(/\s/g, "").toLowerCase()
-    input.doors = (input.doors).toString().replace(/\s/g, "").toLowerCase()
+    // input.doors = (input.doors).toString().replace(/\s/g, "").toLowerCase()
     input.body = (input.body).toString().replace(/\s/g, "").toLowerCase()
     input.color = (input.color).toString().replace(/\s/g, "").toLowerCase()
     input.age = (input.age).toString().replace(/\s/g, "").toLowerCase()
@@ -53,7 +55,7 @@ const predictPrice = async (input) => {
             }
 
             if (valueOne >=100000){
-                resolve({start: 100000 - 500, end: 9999999999999})
+                resolve({start: 100000, end: 9999999999999})
                 // console.log('price of car is greater than 100k')
             }
         }
@@ -73,6 +75,7 @@ const predictPrice = async (input) => {
 
             if (!greater){
                 // console.log('price is: ' + (valueTwo - 6250) + ' - ' + valueTwo)
+
                 valueTwoFound = true
             }
         }
@@ -81,11 +84,30 @@ const predictPrice = async (input) => {
         let valueThree = valueTwo - 6250
         let priceFound = false
 
+        let loop = 0
+        let currentChunk = valueThree/ 6250
+
         while (priceFound === false){
             valueThree += 500
-            // console.log('tree 3: ' + valueThree + '   ')
             const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueThree + '.json')))
             const greater = tree.check(input, data)
+
+            /*
+            only 13 possible numbers between 6250 and 12500.. because 6250/500
+            if the 13th iteration is passed when then need to start at 6250 * 2 because we only have a file for every 500 from 6250, 12500 etc..
+             */
+            loop += 1;
+            if (loop % 13 === 0){
+                currentChunk += 1
+
+                valueThree = 6250 * currentChunk
+            }
+
+
+
+
+            // console.log('tree 3: ' + valueThree + '   ' + 'prediction: ' + greater)
+
 
             // console.log(valueThree, greater)
 

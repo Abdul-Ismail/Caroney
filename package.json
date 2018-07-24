@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Abdul-Ismail/Caroney#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cli-progress": "^2.0.0",
     "express": "^4.16.3",
     "nodemon": "^1.18.3",
     "puppeteer": "^1.6.0"

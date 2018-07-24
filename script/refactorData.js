@@ -80,8 +80,25 @@ const combineObj = () => {
     });
 }
 
-combineObj()
+// combineObj()
 
+
+const filterFeatures = () => {
+    var data = JSON.parse(fs.readFileSync('../data/data4.json', 'utf8'));
+
+    const obj = []
+
+    for (const a of data){
+        delete a.features.doors
+        obj.push(a)
+    }
+
+    fs.writeFile('./data4-filtered-doors' +'.json', JSON.stringify(obj, null, "\t"), 'utf8', function (err) {
+        if (err) return console.log(err);
+        console.log("The file was saved!");
+    });
+}
+filterFeatures()
 
 // let num = 15
 // const c = {
