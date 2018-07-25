@@ -1,5 +1,5 @@
 const tree = require('./decisionTree');
-const data = require('../data/data4-filtered-doors');
+const data = require('../data/data4-filtered-doors-colors');
 
 (async () => {
     //0 - 100k

@@ -3,7 +3,7 @@ const predictPrice = require('./main');
 const _cliProgress = require('cli-progress');
 const bar1 = new _cliProgress.Bar({}, _cliProgress.Presets.shades_classic);
 bar1.start(data.length, 0);
-
+const colors = require('colors');
 
 (async() => {
     console.log('testing with no doors')
@@ -16,22 +16,43 @@ bar1.start(data.length, 0);
     for (const obj of data) {
         counter += 1
 
-            delete obj.features.doors
-
-            const prediction = await predictPrice(obj.features)
-            bar1.update(counter);
+        delete obj.features.doors
+        delete obj.features.color
 
 
+        if (counter === 1){
+            console.log(obj)
+        }
 
-            if (obj.label <= prediction.end && obj.label >= prediction.start) {
-                correct += 1
-            } else if (obj.label <= prediction.end) {
+        const prediction = await predictPrice(obj.features)
+        // bar1.update(counter);
+
+
+        if (obj.label <= prediction.end && obj.label >= prediction.start) {
+            correct += 1
+        } else {
+
+            console.log(colors.red(obj))
+
+            if (obj.label <= prediction.end) {
                 less += 1
+                console.log(colors.blue('predection: start:', prediction.start, ' end: ', prediction.end))
+                console.log(colors.white(prediction.start - obj.label))
+
+
             } else {
                 higher += 1
+                console.log(colors.yellow('predection: start:', prediction.start, ' end: ', prediction.end))
+                console.log(colors.white(obj.label -prediction.end))
+
+
             }
 
-            if (counter === 100) break
+            console.log('')
+
+        }
+
+        if (counter === 20) break
 
     }
 

@@ -4,63 +4,94 @@
     <meta charset="UTF-8">
     <title>Caroney</title>
     <link rel="stylesheet" type="text/css" href="./style.css">
-    <link rel="icon" href="./img/icon.png">
+    <link rel="icon" href="./img/steering-wheel.png">
 
 </head>
 <body>
 
-<div id="wrapper" style="position: relative">
-    <h1 id="title">Caroney</h1>
-    <p style="color: white; font-family: Arial; text-align: center; margin: 5px 0 30px 0; padding: 0;"> Get the current or furutre value for your car</p>
-
-    <div id="predictionType">
-        <button id="currentPrice" onclick="toggle('currentPrice')" class="clicked">
-            <h3>Check current price</h3>
-            <p>Get the current value for you car</p>
-        </button>
-        <p class="or"> or </p>
-
-        <button id="futurePrice" id='Predict future price' onclick="toggle('futurePrice')" class="unclicked">
-            <h3>Predict future price</h3>
-            <p>Get the price of a future date</p>
-        </button>
-    </div>
-
-    <div style="text-align: center">
-        <div id="regPlate">
-            <img src="./reg.png">
-            <input id="regNumber" type="text" name="reg" placeholder="Registration number">
-        </div> <button onclick="getRegistrationNumberInfo()" style="vertical-align: center;"> Submit</button>
-    </div>
-
-    <form>
-        <select id="make" onchange="updateModels()"></select>
-        <select onchange="checkSelectors()" id="model"><option value="" disabled selected>Model</option></select>
-        <select onchange="checkSelectors()" id="year"></select>
-        <select onchange="checkSelectors()" id="transmission"></select>
-        <select onchange="checkSelectors()" id="engine"></select>
-        <select onchange="checkSelectors()" id="fuel"></select>
-        <select onchange="checkSelectors()" id="body"></select>
-        <select onchange="checkSelectors()" id="color"></select>
-        <select onchange="checkSelectors()" id="doors">></select>
-        <input onkeydown="checkSelectors()" type="text" id="mileage" placeholder="Mileage">
-        <select onchange="checkSelectors()" id="sellYear" style="display: none"><option value="" disabled selected>What year will you sell the car ?</option></select>
-    </form>
-    <div id="traffifLight">
-        <div class="light" id="red" style="background-color:red; position: absolute; left: 39%; top: 6.5%"> </div>
-        <div class="light" id="orange" style="background-color:grey; position: absolute; left: 39%; top: 21.5%"> </div>
-        <div class="light" id="green" style="background-color:grey; position: absolute; left: 39%; top: 36.5%"> </div>
-    </div>
-
-    <button id="submitButton" onclick="predictPrice()"> Predict price</button>
-
-    <p id="predictedPrice">...</p>
-
-    <p style="position: absolute; bottom: 0px; color: grey; font-size: 12px; font-family: Arial">
-        Developed by Abdulaziz Ismail <br>
-        Abduul.ismail@gmail.com
-    </p>
+<div id="title">
+    <p  style="display: inline-block; font-size: 55px; margin: 10px 0 10px 0">Car</p> <img src="./img/steering-wheel.png" style="display: inline-block; width: 35px; margin: 0; padding: 0"> <p style="display: inline-block; font-size: 55px;  margin: 10px 10px 10px 0">ney</p>
 </div>
+<p style="color: black; font-family: Arial; text-align: center; margin: 5px 0 30px 0; padding: 0;"> Get the current or furutre value for your car</p>
+
+<div style=" width: 250px; margin: auto">
+    <img src="./img/tesla.png" style="width: 100%">
+</div>
+
+
+
+
+
+    <!--<div style="height: 300px; width: 300px; background-color: #0f82af"></div>-->
+
+    <div id="wrapper">
+
+        <div id="predictionType">
+            <button id="currentPrice" onclick="toggle('currentPrice')" class="clicked">
+                <h3>Check current price</h3>
+            </button>
+            <p class="or"> or </p>
+
+            <button id="futurePrice" id='Predict future price' onclick="toggle('futurePrice')" class="unclicked">
+                <h3>Predict future price</h3>
+            </button>
+        </div>
+
+        <div style="text-align: center">
+            <div id="regPlate">
+                <img src="./reg.png">
+                <input id="regNumber" type="text" name="reg" placeholder="Registration number">
+            </div>
+            <button onclick="getRegistrationNumberInfo()" style="vertical-align: center; margin-top: 15px"> Submit</button>
+        </div>
+
+        <form>
+            <select id="make" onchange="updateModels()"></select>
+            <select onchange="checkSelectors()" id="model"><option value="" disabled selected>Model</option></select>
+            <select onchange="checkSelectors()" id="year"></select>
+            <select onchange="checkSelectors()" id="transmission"></select>
+            <select onchange="checkSelectors()" id="engine"></select>
+            <select onchange="checkSelectors()" id="fuel"></select>
+            <select onchange="checkSelectors()" id="body"></select>
+            <select onchange="checkSelectors()" id="color"></select>
+            <select onchange="checkSelectors()" id="doors">></select>
+            <select onchange="checkSelectors()" id="sellYear" style="display: none"></select>
+
+
+            <div class="mileage" style="display: inline-block; margin-top: 10px">
+                <input onkeydown="checkSelectors()" type="text" id="mileage" placeholder="Mileage" style="width: 120px; padding: 5px 20px">
+                <div style="display: inline-block">
+                    <input type="checkbox" name="vehicle" value="miles" style="display: inline-block; width: 20px; vertical-align: top; margin: 0; height: 20px">
+                    <p style="display: inline-block; margin: 0; font-family: Aria; font-size: 14px">Miles</p>
+                </div>
+
+                <div style="display: inline-block; margin-left: 5px">
+                    <input type="checkbox" name="vehicle" value="kms" style="display: inline-block; width: 20px; vertical-align: top; margin: 0; height: 20px">
+                    <p style="display: inline-block; margin: 0; font-family: Arial; font-size: 14px">Kms</p>
+                </div>
+            </div>
+
+        </form>
+        <!--<div id="traffifLight">-->
+        <!--<div class="light" id="red" style="background-color:red; position: absolute; left: 39%; top: 6.5%"> </div>-->
+        <!--<div class="light" id="orange" style="background-color:grey; position: absolute; left: 39%; top: 21.5%"> </div>-->
+        <!--<div class="light" id="green" style="background-color:grey; position: absolute; left: 39%; top: 36.5%"> </div>-->
+        <!--</div>-->
+
+        <button id="submitButton" onclick="predictPrice()"> Predict price</button>
+
+        <p id="predictedPrice" style="text-align: center; font-size: 22px">334562</p>
+
+        <p style="position: absolute; bottom: 0px; color: grey; font-size: 12px; font-family: Arial">
+            Developed by Abdulaziz Ismail <br>
+            Abduul.ismail@gmail.com
+        </p>
+    </div>
+
+
+
+
+
 
 <script src="main.js"></script>
 </body>

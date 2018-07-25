@@ -90,10 +90,14 @@ const filterFeatures = () => {
 
     for (const a of data){
         delete a.features.doors
+        delete a.features.color
+
         obj.push(a)
     }
 
-    fs.writeFile('./data4-filtered-doors' +'.json', JSON.stringify(obj, null, "\t"), 'utf8', function (err) {
+    console.log(obj.length)
+
+    fs.writeFile('./data4-filtered-doors-colors' +'.json', JSON.stringify(obj, null, "\t"), 'utf8', function (err) {
         if (err) return console.log(err);
         console.log("The file was saved!");
     });

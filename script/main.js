@@ -9,8 +9,10 @@ const helper = require('../helper')
 // tree.generate(data, {}, 1399)
 // console.log(JSON.stringify(tree.generate(data,{}, 2000), null, 2))
 
-const folder = '4-nodoors'
+const folder = '../data/4/tree_'
+// const folder = '../data/4/tree_'
 console.log('folder:', folder);
+const print = true
 
 const predictPrice = async (input) => {
 
@@ -19,7 +21,7 @@ const predictPrice = async (input) => {
     input.engine = (input.engine).toString().replace(/\s/g, "").toLowerCase()
     // input.doors = (input.doors).toString().replace(/\s/g, "").toLowerCase()
     input.body = (input.body).toString().replace(/\s/g, "").toLowerCase()
-    input.color = (input.color).toString().replace(/\s/g, "").toLowerCase()
+    // input.color = (input.color).toString().replace(/\s/g, "").toLowerCase()
     input.age = (input.age).toString().replace(/\s/g, "").toLowerCase()
     input.transmission = (input.transmission).toString().replace(/\s/g, "").toLowerCase()
     input.fuel = (input.fuel).toString().replace(/\s/g, "").toLowerCase()
@@ -45,9 +47,9 @@ const predictPrice = async (input) => {
 
         while (valueOneFound === false){
             valueOne += 25000
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueOne + '.json')))
+            const data = await JSON.parse(fs.readFileSync(folder  + valueOne + '.json'))
             const greater = tree.check(input, data)
-            // console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
+            if (print) console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
 
             if (!greater){
                 // console.log('price is: ' + (valueOne - 25000) + ' - ' + valueOne)
@@ -69,9 +71,9 @@ const predictPrice = async (input) => {
             valueTwo += 6250
 
             // console.log(valueTwo)
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueTwo + '.json')))
+            const data = await JSON.parse(fs.readFileSync(folder  + valueTwo + '.json'))
             const greater = tree.check(input, data)
-            // console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
+            if (print)console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
 
             if (!greater){
                 // console.log('price is: ' + (valueTwo - 6250) + ' - ' + valueTwo)
@@ -89,7 +91,7 @@ const predictPrice = async (input) => {
 
         while (priceFound === false){
             valueThree += 500
-            const data = await JSON.parse(fs.readFileSync(path.join(__dirname, '../', 'generatedTrees', folder, 'tree_' + valueThree + '.json')))
+            const data = await JSON.parse(fs.readFileSync(folder + valueThree + '.json'))
             const greater = tree.check(input, data)
 
             /*
@@ -103,13 +105,7 @@ const predictPrice = async (input) => {
                 valueThree = 6250 * currentChunk
             }
 
-
-
-
-            // console.log('tree 3: ' + valueThree + '   ' + 'prediction: ' + greater)
-
-
-            // console.log(valueThree, greater)
+            if (print) console.log('tree 3: ' + valueThree + '   ' + 'prediction: ' + greater)
 
             if (!greater){
                 // console.log(valueThree)
@@ -124,28 +120,4 @@ const predictPrice = async (input) => {
 
 }
 
-// a({make: "3Series", model: "3Series", year: "2005", body: "Convertible"})
-// predictPrice({ make: 'volkswagen',
-//     model: 'golf',
-//     engine: '1.4',
-//     doors: '5',
-//     body: 'Hatchback',
-//     color: 'Gold',
-//     fuel: 'Petrol',
-//     transmission: 'manual',
-//     mileage: '3000000',
-//     age: '15'
-// })
-
 module.exports = predictPrice
-
-//
-// (async () => {
-//     const data = await regNumber('03ke1835')
-//     console.log(data)
-//     predictPrice(data)
-// })()
-//
-//
-//
-//
