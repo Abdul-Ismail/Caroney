@@ -1,64 +1,3 @@
-/*
-    'ac': {make: 'AC', models: ['Cobra']},
-    'aixam': {make: 'Aixam', models: ['500']},
-    'alfaromeo': {make: 'Alfa Romeo', models: ['Brera', 'Giulietta', 'GT', 'MiTo', 'Spider', '145', '147', '156', '159']},
-    'astonmartin': {naje: 'Aston Martin', models: ['DB7', 'Other']},
-    'audi': {make: 'Audi', models: ['2.0TDI 150BHP', '80 Avant', 'A1', 'A3', 'A4', 'A4 Avant', 'A5', 'A6', 'A6 Avant', 'A7', 'A8', 'Allroad', 'Q2', 'Q3', 'Q5', 'Q7', 'Quattro', 'R8', 'RS4', 'RS6', 'S3', 'S5', 'S6', 'S8', 'SQ5', 'TT', '80', '100', 'Other']},
-    'austin': {make: 'Austin', models: ['Metro', 'Mini', '7'],},
-    'bentley': {make: 'Bentley', models:['Flying Spur']},
-    'bmw': {make: 'BMW', models: ['1 Series', '2 Series', '3 Series', '320i', '4 Series', '5 Series', '6 Series', '7 Series', 'i3', 'i8', 'M2', 'M3', 'M4', 'M5', 'M6', 'X1', 'X2', 'X3', 'X4', 'X5', 'X6', 'Z3', 'Z4', '520', 'Other']},
-    'bugatti': {make: 'Bugatti', models: ['Other']},
-    'chevrolet': {make: 'Chevrolet', models: ['Astra', 'Aveo', 'Camaro', 'Captiva', 'Cruze', 'Epica', 'Kalos', 'Lacetti', 'Matiz', 'Nubira', 'Spark', 'Tacuma', 'Other']},
-    'chrysler':{make: 'Chrysler', models: [],},
-    'citroen': {make: 'Citroen', models: ['Berlingo', 'Berlingo Multispace', 'C-Crosser', 'C1', 'C2', 'C3', 'C3 Picasso', 'C4', 'C4 Cactus', 'C4 Grand Picasso', 'C4 Picasso', 'C5', 'C8', 'Dispatch', 'DS3', 'DS4', 'DS5', 'Nemo', 'Picasso', 'Relay', 'Saxo', 'Xantia', 'Xsara', 'Xsara Picasso']},
-    'dacia': {make: 'Dacia', models: ['Duster', 'Logan', 'Sandero', 'Sandero Stepway']},
-    'daewoo': {make: 'Daewoo', models: ['Kalos', 'Lanos', 'Matiz', 'Rexton'],},
-    'daihatsu': {make: 'Daihatsu', models: ['Cuore', 'Fourtrak', 'Mira', 'Sirion', 'Terios']},
-    'dodge': {make: 'Dodge', models: ['Caliber', 'Nitro']},
-    'ferrari': {make: 'Ferrari', models: ['F355']},
-    'fiat': {make: 'Fiat', models: ['500L', '500X', 'Abarth', 'Bravo', 'Coupe', 'Doblo', 'Doblo Cargo', 'Ducato', 'Fiorino', 'Idea', 'Multipla', 'Panda', 'Punto', 'Qubo', 'Scudo', 'Sedici', 'Seicento', 'Spider', 'Stilo', 'Talento', 'Tipo', '500']},
-    'ford': {make: 'Ford', models: ['B-Max', 'Courier', 'EcoSport', 'Edge', 'Escort', 'Fiesta', 'Focus', 'Focus C-MAX', 'Fusion', 'Galaxy', 'Grand C-Max', 'Ka', 'Kuga', 'Mondeo', 'Mustang', 'Ranger', 'S-Max', 'Sierra', 'Tourneo', 'Tourneo Connect', 'Tourneo Custom', 'Transit', 'Transit Connect', 'TRANSIT COURIER', 'Other']}
-    'greatwall': {make: 'Great Wall', models: ['Steed']},
-    'honda': {make: 'Honda', models: ['Accord', 'Civic', 'CR-V', 'CR-Z', 'Crx', 'Fit', 'FR-V', 'Freed', 'HR-V', 'Insight', 'Integra', 'Jazz', 'Prelude', 'S2000', 'Stream', 'Other']},
-    'hummer': {make: 'Hummer', models: ['H3']},
-    'hyundai': {make: 'Hyundai', models: ['Accent', 'Amica', 'Atoz', 'Coupe', 'Elantra', 'Getz', 'i10', 'i20', 'i30', 'i40', 'ix20', 'ix35', 'Lantra', 'Matrix', 'Montana', 'Santa Fe', 'Sonata', 'Trajet', 'Tucson', 'Veloster']},
-    'infiniti': {make: 'Infiniti', models: ['']},
-    'isuzu': {make: 'Isuzu', models: ['D-Max', 'NNR', 'NPR', 'NQR', 'Trooper']},
-    'iveco': {make: 'Iveco', models: ['Daily']},
-    'jaguar': {make: 'Jaguar', models: ['E- PACE', 'F- PACE', 'F-Type', 'S-Type', 'X-Type', 'XE', 'XF', 'XJ Series', 'XK Series', 'XKR']},
-    'jeep': {make: 'Jeep', models: ['Cherokee', 'Compass', 'Grand Cherokee', 'Renegade', 'Wrangler']},
-    'kia': {make: 'Kia', models: ['Carens', 'Carnival', 'ceed', 'Cerato', 'Magentis', 'Niro', 'Optima', 'Picanto', 'Pro Ceed', 'Rio', 'Sedona', 'Sorento', 'Soul', 'Sportage', 'Venga']},
-    'landrover': {make: 'Land Rover', models: ['Defender', 'Discovery', 'Discovery Sport', 'Freelander', 'Range Rover', 'Range Rover Evoque', 'Range Rover Sport']},
-    'ldv': {make: 'LDV', models: ['Other']},
-    'lexus': {make: 'Lexus', models: ['CT Hybrid', 'GS', 'GS 300h', 'IS', 'IS 300h', 'LS', 'NX', 'RX', 'RX450h']},
-    'lincoln': {make: 'Lincoln', models: ['Other']},
-    'maserati': {make: 'Maserati', models: ['Coupe', 'Ghibli', 'Quattroporte']},
-    'mazda': {make: 'Mazda', models: ['B-Series', 'Bongo', 'CX-3', 'CX-5', 'CX-7', 'Demio', 'MX-3', 'MX-5', 'Premacy', 'RX7', 'RX8', 'Tribute', '2', '3', '5', '6', '121', '323', '626']},
-    'mercedes-benz': {make: 'Mercedes-Benz', models: ['A-Class', 'A140', 'AMG', 'Atego', 'B-Class', 'C-Class', 'CL-Class', 'CLA-Class', 'CLC-Class', 'CLK-Class', 'CLS-Class', 'Cube', 'E-Class', 'GL-Class', 'GLA-Class', 'GLC-Class', 'GLE-Class', 'M-Class', 'ML-Class', 'R-Class', 'S-Class', 'SL-Class', 'SLC', 'SLK-Class', 'Sprin', 'V-Class', 'Vaneo', 'Viano', 'Vito', '190', '200', '220', '230', '250', '280', '300', '320', 'Other']},
-    'mg': {make: 'MG', models: ['MGBGT', 'MGF', 'ZR']},
-    'mini': {make: 'MINI', models: ['Clubman', 'Convertible', 'Cooper', 'Cooper S', 'COUNTRYMAN', 'First', 'JOHN COOPER WORKS', 'MINI', 'One', 'PACEMAN', 'ROADSTER']},
-    'mitsubishi': {make: 'Mitsubishi', models: ['ASX', 'Canter', 'Carisma', 'Colt', 'FTO', 'Grandis', 'i', 'L200', 'Lancer', 'Mirage', 'Outlander', 'Pajero', 'Shogun', 'Space Star', 'Space Wagon', 'Other']},
-    'morris': {make: 'Morris', models: ['Minor']},
-    'nissan': {make: 'Nissan', models: ['100 NX', '200 SX', '300 ZX', '350 Z', 'Almera', 'Almera Tino', 'Cabstar', 'Figaro', 'Juke', 'Leaf', 'March', 'Micra', 'Murano', 'Navara', 'NOTE', 'NP300', 'NV200', 'NV200 Combi', 'NV400', 'Pathfinder', 'Patrol', 'Pixo', 'Primastar', 'Primera', 'Pulsar', 'QASHQAI', 'Qashqai+2', 'Serena', 'Silvia', 'Skyline', 'Sunny', 'Terrano', 'Tiida', 'Tino', 'X-Trail', 'Other']},
-    'opel': {make: 'Opel', models: ['Adam', 'Agila', 'Antara', 'Astra', 'Astravan', 'Combo', 'Corsa', 'Corsavan', 'Frontera', 'Insignia', 'KARL', 'Meriva', 'Mokka', 'Movano', 'Omega', 'Signum', 'Tigra', 'Vectra', 'Vivaro', 'Zafira']},
-    'peugeot': {make: 'Peugeot', models: ['106', '107', '108', '205', '206', '207', '208', '304', '306', '307', '307 SW', 'Bipper', 'Boxer', 'Expert', 'Partner', 'Partner Tepee', 'RCZ', '308', '406', '407', '508', '607', '807', '1007', '2008', '3008', '5008']},
-    'porsche': {make: 'Porsche', models: ['Boxster', 'Cayenne', 'Cayman', 'Macan', 'Panamera', '356', '911', '924', '944']},
-    'proton': {make: 'Proton', models: ['Persona']},
-    'renault': {make: 'Renault', models: ['Captur', 'Clio', 'Espace', 'Fluence', 'Grand Espace', 'Grand Modus', 'Grand Scenic', 'KADJAR', 'Kangoo', 'Koleos', 'Laguna', 'Master', 'Megane', 'Modus', 'Safrane', 'Scenic', 'Trafic', 'Twingo', 'Vel Satis', 'Zoe', '5', '19']},
-    'rover': {make: 'Rover', models: ['45', '75', '100']},
-    'saab': {make: 'Saab', models: ['93', '95', '900', '9000']},
-    'seat': {make: 'Seat', models: ['Alhambra', 'Altea', 'Arosa', 'Ateca', 'Cordoba', 'Cupra', 'Exeo', 'Ibiza', 'Inca', 'Leon', 'Mii', 'Toledo']},
-    'skoda': {make: 'Skoda', models: ['Citigo', 'Fabia', 'Karoq', 'Kodiaq', 'Octavia', 'Rapid', 'Roomster', 'Superb', 'Yeti']},
-    'smartcar': {make: 'Smart Car', models: ['City-Coupe', 'ForFour', 'ForTwo', 'Roadster']},
-    'ssangyong': {make: 'Ssangyong', models: ['Actyon', 'Korando', 'Kyron', 'Rexton', 'Rodius', 'Tivoli']},
-    'subaru': {make: 'Subaru', models: ['BRZ', 'Forester', 'Impreza', 'Justy', 'Legacy', 'Outback', 'Xv']},
-    'suzuki': {make: 'Suzuki', models: ['Alto', 'Baleno', 'Cappuccino', 'Celerio', 'Grand Vitara', 'Ignis', 'Jimny', 'Liana', 'SJ', 'Splash', 'Swift', 'SX4', 'SX4 S-Cross', 'Vitara', 'Vitara GL+', 'Vitara GLX', 'Wagon R', 'Other']},
-    'tesla': {make: 'Tesla', models: ['Mdeol S', 'Other']},
-    'toyota': {make: 'Toyota', models: ['Altezza', 'Auris', 'Avensis', 'Avensis Verso', 'AYGO', 'Camry', 'Carina', 'Celica', 'Chaser', 'Corolla', 'Corolla Verso', 'Dyna', 'Estima', 'Glanza', 'GT86', 'HiAce', 'HiLux', 'iQ', 'Landcruiser', 'Levin', 'MR2', 'Paseo', 'Previa', 'Prius', 'Proace', 'Rav4', 'Sprinter', 'Starlet', 'Urban Cruiser', 'Verso', 'Verso-S', 'Vitz', 'Wish', 'Yaris', 'Yaris Verso', 'Other']},
-    'vauxhall': {make: 'Vauxhall', models: ['Agila', 'Astra', 'Astravan', 'Combo', 'Corsa', 'Insignia', 'Meriva', 'Movano', 'Tigra', 'Vectra', 'Vivaro', 'Zafira', 'Other']},
-    'volkswagen': {make: 'Volkswagen', models: ['Amarok', 'Beetle', 'Bora', 'Caddy', 'Caddy Life', 'Caddy Maxi', 'Caddy Maxi Life', 'California', 'Caravelle', 'CC', 'Corrado', 'Crafter', 'Eos', 'Fox', 'Golf', 'Golf Plus', 'Golf SV', 'Jetta', 'LT', 'Lupo', 'New Beetle', 'Passat', 'Passat CC', 'Polo', 'Scirocco', 'Sharan', 'Shuttle', 'Tiguan', 'Touareg', 'Touran', 'Transporter', 'Up!', 'Other']},
-    'volvo': {make: 'Volvo', models: ['C30', 'C70', 'S40', 'S60', 'S80', 'S90', 'V40', 'V50', 'V60', 'V70', 'V90', 'XC60', 'XC70', 'XC90', '850', '940', 'Other']}
- */
 const carMake = {
     'AC': ['Cobra'],
     'Aixam': ['500'],
@@ -120,6 +59,7 @@ const carMake = {
     'Volvo': ['C30', 'C70', 'S40', 'S60', 'S80', 'S90', 'V40', 'V50', 'V60', 'V70', 'V90', 'XC60', 'XC70', 'XC90', '850', '940', 'Other']
 }
 
+
 const year = []
 const engine = []
 const bodyType = ['Cabriolet', 'Camper', 'Commercial', 'Convertible' ,'Coupe', 'Estate', 'Hatchback', 'MPV', 'Saloon', 'SUV', 'Other']
@@ -163,8 +103,7 @@ const init = function(){
     fillFormSelect('body', bodyType, 'Body Type')
     fillFormSelect('color', colors, 'Color')
     fillFormSelect('doors', ['2', '3', '4', '5', '6', '7', '8'], 'Doors')
-    fillFormSelect('sellYear', futureYears, 'When do you want to sell the car')
-
+    fillFormSelect('sellYear', futureYears, 'Year of sale')
 }
 
 init()
@@ -177,7 +116,6 @@ const getRegistrationNumberInfo = function(){
 
     const obj = JSON.parse(xhr.response)
     console.log(obj)
-    document.getElementById('model').value = obj.model
     document.getElementById('make').value = obj.make
     document.getElementById('year').value = (2018 - obj.age)
     document.getElementById('transmission').value = obj.transmission
@@ -186,6 +124,10 @@ const getRegistrationNumberInfo = function(){
     document.getElementById('body').value = obj.body
     document.getElementById('color').value = obj.color
     document.getElementById('doors').value = obj.doors
+    fillFormSelect('model', carMake[obj.make], 'Model')
+    document.getElementById('model').value = obj.model
+
+
 }
 
 const predictPrice = function(){
@@ -219,7 +161,6 @@ const predictPrice = function(){
 
 const updateModels = function() {
     fillFormSelect('model', carMake[document.getElementById('make').value], 'Model')
-    checkSelectors()
 }
 
 const toggle = function(id){
@@ -229,7 +170,7 @@ const toggle = function(id){
 
     if (id === 'futurePrice'){
         document.getElementById('sellYear').style.display = 'inline-block'
-        document.getElementById('mileage').placeholder = 'Estimated mileage when selling'
+        document.getElementById('mileage').placeholder = 'Estimated mileage on sale'
         document.getElementById('mileage').value = ''
         predictFuturePrice = true
 
@@ -250,20 +191,20 @@ const changeTrafficLight = function(id){
 }
 
 const checkSelectors = function(){
-    const model = document.getElementById('model').value;
-    const make = document.getElementById('make').value;
-    const year = document.getElementById('year').value;
-    const transmission = document.getElementById('transmission').value;
-    const engine = document.getElementById('engine').value;
-    const fuel = document.getElementById('fuel').value;
-    const body = document.getElementById('body').value;
-    const color = document.getElementById('color').value;
-    const doors = document.getElementById('doors').value;
-    const mileage = document.getElementById('mileage').value;
-
-    if (model !== '' && make !== '' && year !== '' && transmission !== '' && engine !== '' && fuel !== '' && body !== '' && color !== '' && doors && mileage !== '') changeTrafficLight('green')
-    else if (model !== '' && make !== '' && year !== '' && transmission !== '' && engine !== '' && fuel) changeTrafficLight('orange')
-    else changeTrafficLight('red')
+    // const model = document.getElementById('model').value;
+    // const make = document.getElementById('make').value;
+    // const year = document.getElementById('year').value;
+    // const transmission = document.getElementById('transmission').value;
+    // const engine = document.getElementById('engine').value;
+    // const fuel = document.getElementById('fuel').value;
+    // const body = document.getElementById('body').value;
+    // const color = document.getElementById('color').value;
+    // const doors = document.getElementById('doors').value;
+    // const mileage = document.getElementById('mileage').value;
+    //
+    // if (model !== '' && make !== '' && year !== '' && transmission !== '' && engine !== '' && fuel !== '' && body !== '' && color !== '' && doors && mileage !== '') changeTrafficLight('green')
+    // else if (model !== '' && make !== '' && year !== '' && transmission !== '' && engine !== '' && fuel) changeTrafficLight('orange')
+    // else changeTrafficLight('red')
 }
 
 

@@ -52,7 +52,7 @@ const colors = require('colors');
 
         }
 
-        if (counter === 20) break
+        if (counter === 50) break
 
     }
 

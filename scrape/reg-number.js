@@ -7,6 +7,11 @@ const getInnerText = async (page, sel) => {
     }, sel)
 }
 
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
 
 const getRegDetails = async (reg) => {
     return new Promise(async resolve => {
@@ -38,7 +43,10 @@ const getRegDetails = async (reg) => {
 
         console.log(new Date().getTime() - start);
 
-
+        //make each cap
+        for (let o in obj){
+            obj[o] = toTitleCase(obj[o])
+        }
 
         browser.close()
         resolve(obj)

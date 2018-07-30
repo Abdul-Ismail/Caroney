@@ -9,7 +9,8 @@ const helper = require('../helper')
 // tree.generate(data, {}, 1399)
 // console.log(JSON.stringify(tree.generate(data,{}, 2000), null, 2))
 
-const folder = '../data/4/tree_'
+const root = 'data'
+const folder = '4'
 // const folder = '../data/4/tree_'
 console.log('folder:', folder);
 const print = true
@@ -47,7 +48,7 @@ const predictPrice = async (input) => {
 
         while (valueOneFound === false){
             valueOne += 25000
-            const data = await JSON.parse(fs.readFileSync(folder  + valueOne + '.json'))
+            const data = await JSON.parse(fs.readFileSync(path.join(root, folder, 'tree_' + valueOne + '.json' )))
             const greater = tree.check(input, data)
             if (print) console.log('tree: ' + valueOne + '   ' + 'prediction: ' + greater)
 
@@ -71,7 +72,7 @@ const predictPrice = async (input) => {
             valueTwo += 6250
 
             // console.log(valueTwo)
-            const data = await JSON.parse(fs.readFileSync(folder  + valueTwo + '.json'))
+            const data = await JSON.parse(fs.readFileSync(path.join(root, folder, 'tree_' + valueTwo + '.json' )))
             const greater = tree.check(input, data)
             if (print)console.log('tree 2: ' + valueTwo + '   ' + 'prediction: ' + greater)
 
@@ -91,7 +92,7 @@ const predictPrice = async (input) => {
 
         while (priceFound === false){
             valueThree += 500
-            const data = await JSON.parse(fs.readFileSync(folder + valueThree + '.json'))
+            const data = await JSON.parse(fs.readFileSync(path.join(root, folder, 'tree_' + valueThree + '.json' )))
             const greater = tree.check(input, data)
 
             /*
@@ -110,8 +111,9 @@ const predictPrice = async (input) => {
             if (!greater){
                 // console.log(valueThree)
                 // console.log('price is: ' + (valueThree - 500) + ' - ' + valueThree)
-                // resolve('price is: ' + (valueThree - 500) + ' - ' + valueThree)
-                resolve({start: valueThree - 500, end: valueThree})
+                resolve('price is: ' + (valueThree - 500) + ' - ' + valueThree)
+                // resolve({start: valueThree - 500, end: valueThree})
+                // resolve
                 priceFound = true
             }
         }
