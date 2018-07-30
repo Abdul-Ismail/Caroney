@@ -111,7 +111,7 @@ init()
 const getRegistrationNumberInfo = function(){
     var xhr = new XMLHttpRequest();
     const reg = document.getElementById('regNumber').value
-    xhr.open("GET", "http://localhost:4000/regNumberDetails?reg=" + reg, false);
+    xhr.open("GET", "https://caroney.herokuapp.com/regNumberDetails?reg=" + reg, false);
     xhr.send();
 
     const obj = JSON.parse(xhr.response)
@@ -132,7 +132,7 @@ const getRegistrationNumberInfo = function(){
 
 const predictPrice = function(){
     var xhr = new XMLHttpRequest();
-    var url = "http://localhost:4000/predictPrice";
+    var url = "https://caroney.herokuapp.com/predictPrice";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
