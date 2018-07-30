@@ -3,6 +3,7 @@ const app = express()
 const reg = require('./scrape/reg-number')
 const predictPrice = require('./script/main')
 const bodyParser = require('body-parser')
+const port = process.env.PORT || 4000;
 
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -32,6 +33,6 @@ app.get('/a', async (req, res) => {
 
 
 
-app.listen(4000, () => {
-	console.log('Server running on port' + 4000)
+app.listen(port, () => {
+	console.log('Server running on port' + port)
 })
